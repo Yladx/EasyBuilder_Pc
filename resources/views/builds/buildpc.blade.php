@@ -64,7 +64,7 @@
             pointer-events: none;
         }
 
-      
+
 
         .list-group-item.active {
             background-color: #282828c6;
@@ -76,10 +76,10 @@
             margin-right: 10px;
         }
 
-     
-    
 
-      
+
+
+
 
 /* Individual Component Item */
 .component-item {
@@ -227,7 +227,7 @@
             background-color: #0056b3;
         }
 
-      
+
         /* Add styles for dragging feedback */
         .floating-cart-btn.dragging {
             opacity: 0.8;
@@ -329,11 +329,11 @@
                         title="Click for FAQ or Guide">
                         <i class="fas fa-question-circle" style="font-size: 1.5rem;"></i>
                     </button>
-                  
+
                 </div>
 
-           
-    
+
+
                     <div class="motherboard-components px-4 mt-4">
                         @foreach($motherboards as $motherboard)
                         <div class="component-item flex-shrink-0 mb-3"
@@ -344,7 +344,7 @@
                                 <span class="d-block fw-bold">{{ $motherboard->name }}</span>
                                  <span class="d-block text-muted ">RAM Slots: {{ $motherboard->ram_slots ?? 0 }} Socket: {{ $motherboard->socket ?? N/A }} Socket: {{ $motherboard->socket ?? N/A }}</span>
                                 <span>
-                           <a class="btn btn-link text-dark p-0" 
+                           <a class="btn btn-link text-dark p-0"
                                href="javascript:void(0);"  data-tooltip-content="
                                 @php
                                 $filteredColumns = array_filter($motherboard->getFillable(), function($column) {
@@ -366,7 +366,7 @@
                         </div>
                         @endforeach
                     </div>
-                   
+
                 </div>
 
                 <div id="cpu-section" style="display: none;">
@@ -379,7 +379,7 @@
                     <i class="fas fa-question-circle" style="font-size: 1.5rem;"></i>
                 </button>
             </div>
-        
+
                     <div class="cpu-components px-4 mt-4"></div>
                 </div>
 
@@ -393,7 +393,7 @@
                     <i class="fas fa-question-circle" style="font-size: 1.5rem;"></i>
                 </button>
             </div>
-      
+
                     <div class="gpu-components px-4 mt-4"></div>
                 </div>
 
@@ -407,7 +407,7 @@
                     <i class="fas fa-question-circle" style="font-size: 1.5rem;"></i>
                 </button>
             </div>
-       
+
                     <div class="ram-components px-4 mt-4"></div>
                 </div>
 
@@ -421,7 +421,7 @@
                     <i class="fas fa-question-circle" style="font-size: 1.5rem;"></i>
                 </button>
             </div>
-  
+
                     <div class="storage-components px-4 mt-4"></div>
                 </div>
 
@@ -435,7 +435,7 @@
                     <i class="fas fa-question-circle" style="font-size: 1.5rem;"></i>
                 </button>
             </div>
-      
+
                     <div class="psu-components px-4 mt-4"></div>
                 </div>
 
@@ -449,7 +449,7 @@
                     <i class="fas fa-question-circle" style="font-size: 1.5rem;"></i>
                 </button>
             </div>
-        
+
                     <div class="case-components px-4 mt-4"></div>
                 </div>
             </div>
@@ -459,7 +459,7 @@
     <div id="tooltip" style="display: none; position: absolute; z-index: 9999; background: rgba(0, 0, 0, 0.8); color: #fff; padding: 10px; border-radius: 5px; font-size: 0.9rem; max-width: 300px; pointer-events: none;"></div>
 
 
-  
+
         </div>
 
         <!-- Selected Components -->
@@ -469,7 +469,7 @@
             <h4>Selected Components</h4>
                     <div class="tdp-calculator">
                         <div class="d-flex align-items-center">
-                         
+
                             <input type="text"
                                    class="form-control text-center fw-bold"
                                    id="total_tdp"
@@ -479,13 +479,13 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div id="selected-components" class=" px-4 mt-4"></div>
                 <div class="mt-auto bg-light selected-components-footer px-5 py-2" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
                     <button class="btn btn-black btn-publish" style="display: none; background-color: black; color: white;">Save Build</button>
                     <button class="btn btn-clear" style="background-color: white; color: black; border: 1px solid black; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Clear All</button>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -538,7 +538,7 @@
                <div class="modal-body">
                    <div class="instructions-container">
                        <h6 class="mb-3">Follow these steps to build your perfect PC:</h6>
-                       
+
                        <div class="instruction-step mb-3">
                            <h6 class="text-primary">1. Start with the Motherboard</h6>
                            <p>Choose your motherboard first as it determines compatibility with other components.</p>
@@ -584,23 +584,23 @@
            </div>
        </div>
    </div>
-   
+
    <script>
    // Show instructions modal on page load if not dismissed before
    document.addEventListener('DOMContentLoaded', function() {
        const existingDOMContentLoadedHandler = window.onDOMContentLoaded;
-       
+
        // First run the existing DOMContentLoaded handler if it exists
        if (typeof existingDOMContentLoadedHandler === 'function') {
            existingDOMContentLoadedHandler();
        }
-       
+
        // Then handle the instructions modal
        if (!localStorage.getItem('hideInstructions')) {
            const instructionsModal = new bootstrap.Modal(document.getElementById('instructionsModal'));
            instructionsModal.show();
        }
-   
+
        // Handle the "Don't show again" checkbox
        document.getElementById('dontShowAgain').addEventListener('change', function(e) {
            if (e.target.checked) {
@@ -761,18 +761,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function syncSelectedComponents() {
         const desktopComponents = document.getElementById('selected-components');
         const mobileComponents = document.getElementById('selected-components-mobile');
-        
+
         if (desktopComponents && mobileComponents) {
             // Clone the desktop content to mobile view
             mobileComponents.innerHTML = desktopComponents.innerHTML;
-            
+
             // Sync TDP values
             const desktopTdp = document.getElementById('total_tdp');
             const mobileTdp = document.getElementById('total_tdp_mobile');
             if (desktopTdp && mobileTdp) {
                 mobileTdp.value = desktopTdp.value;
             }
-            
+
             // Sync publish button visibility
             const desktopPublish = document.querySelector('.col-sm-4 .btn-publish');
             const mobilePublish = document.querySelector('#selectedComponentsOffcanvas .btn-publish');
@@ -785,7 +785,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Create a MutationObserver to watch for changes in the desktop view
     const observer = new MutationObserver(syncSelectedComponents);
     const desktopComponents = document.getElementById('selected-components');
-    
+
     if (desktopComponents) {
         observer.observe(desktopComponents, {
             childList: true,
@@ -796,7 +796,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial sync
     syncSelectedComponents();
-    
+
     // Sync when offcanvas is shown
     const offcanvas = document.getElementById('selectedComponentsOffcanvas');
     if (offcanvas) {
