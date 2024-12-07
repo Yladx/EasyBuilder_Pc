@@ -1,0 +1,66 @@
+ /* Accordion Styling */
+ .accordion-item {
+    background-color: #1a1a1a;
+    border: 1px solid #343a40;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.accordion-button {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-weight: bold;
+    border: none;
+}
+.ram-list {
+    display: flex;
+    flex-direction: column; /* Stack RAM names vertically */
+    gap: 5px; /* Add spacing between each RAM name */
+}
+
+.accordion-header {
+    white-space: normal; /* Allow wrapping for long text */
+    text-align: left; /* Align text to the left for better readability */
+}
+
+.accordion-button:not(.collapsed) {
+    color: #ffffff;
+    background-color: #343a40;
+}
+
+.accordion-button:hover {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+.accordion-body {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 15px;
+}
+
+    /* Table for Component Details */
+    .component-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .component-table th,
+    .component-table td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    .card-img {
+        width: 100%; /* Ensure the image takes the full width of the card */
+        max-width: 300px; /* Set the maximum width */
+        max-height: 300px; /* Set the maximum height */
+        height: auto; /* Maintain the aspect ratio dynamically */
+        object-fit: contain; /* Ensure the entire image fits inside the container */
+
+        display: block; /* Ensures the image is treated as a block element */
+        border-radius: 10px; /* Optional: Add rounded corners */
+    }
+
+
+

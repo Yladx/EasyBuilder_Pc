@@ -1,0 +1,356 @@
+/* Importing Google Fonts and Boxicons */
+
+@import "https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css";
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light background for contrast */
+}
+
+
+
+
+/* Global style settings *
+/* Sidebar container styling */
+.dashboard-sidebar {
+position: fixed;
+left: 0;
+top: 0;
+height: 100%;
+width: 78px; /* Default sidebar width */
+background: #000000; /* Dark background color for sidebar */
+padding: 6px 14px;
+z-index: 99; /* Ensures sidebar is on top */
+transition: all 0.5s ease; /* Smooth transition for width change */
+}
+
+/* Logo details within the sidebar */
+.dashboard-sidebar .logo-details {
+height: 60px;
+display: flex;
+align-items: center;
+position: relative;
+}
+.dashboard-sidebar .logo-details .icon {
+opacity: 0; /* Hidden by default, shows when sidebar is expanded */
+transition: all 0.5s ease;
+}
+.dashboard-sidebar .logo-details .logo_name {
+color: #fff;
+font-size: 20px;
+font-weight: 600;
+opacity: 0; /* Hidden by default, shows when sidebar is expanded */
+transition: all 0.5s ease;
+}
+.dashboard-sidebar .logo-details #btn {
+position: absolute;
+top: 50%;
+right: 0;
+transform: translateY(-50%);
+font-size: 23px;
+text-align: center;
+cursor: pointer;
+transition: all 0.5s ease;
+}
+
+/* General icon styling */
+.dashboard-sidebar i {
+color: #fff;
+height: 60px;
+min-width: 50px;
+font-size: 28px;
+text-align: center;
+line-height: 60px; /* Centers icon vertically */
+}
+/* Reset Bootstrap styles within the sidebar */
+.dashboard-sidebar a {
+color: inherit; /* Inherit color from parent */
+text-decoration: none; /* Remove Bootstrap's underline */
+}
+
+.dashboard-sidebar ul {
+padding-left: 0; /* Remove Bootstrap's default padding */
+list-style: none; /* Remove default bullet points */
+}
+
+.dashboard-sidebar li {
+padding: 0; /* Remove Bootstrap's default padding */
+margin: 8px 0; /* Custom margins for sidebar items */
+}
+
+/* Sidebar navigation list styling */
+.dashboard-sidebar .nav-list {
+height: calc(100% - 140px); /* Leaves space for logo and profile */
+}
+
+/* Scrollbar styles for sidebar */
+.dashboard-sidebar .scroll {
+overflow-y: auto; /* Enables vertical scrolling */
+scrollbar-width: thin;
+}
+.dashboard-sidebar .scroll::-webkit-scrollbar {
+width: 8px;
+background: #262440; /* Scrollbar background color */
+border-radius: 5px;
+}
+.dashboard-sidebar .scroll::-webkit-scrollbar-thumb {
+background: #262440; /* Scrollbar thumb color */
+border-radius: 5px;
+}
+.dashboard-sidebar .scroll::-webkit-scrollbar-track {
+background: #171526; /* Scrollbar track color */
+border-radius: 5px;
+}
+
+/* Sidebar navigation item styling */
+.dashboard-sidebar li {
+position: relative;
+margin: 8px 8px 8px 0;
+list-style: none;
+}
+.dashboard-sidebar li .tooltip {
+position: absolute;
+top: -20px;
+left: calc(100% + 15px);
+z-index: 3;
+background: #fff;
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+padding: 6px 12px;
+border-radius: 4px;
+font-size: 15px;
+font-weight: 400;
+opacity: 0; /* Hidden by default */
+pointer-events: none;
+transition: 0s;
+}
+.dashboard-sidebar li:hover .tooltip {
+opacity: 1; /* Shows tooltip on hover */
+pointer-events: auto;
+transition: all 0.4s ease;
+top: 50%;
+transform: translateY(-50%);
+}
+
+/* Link styling within sidebar items */
+.dashboard-sidebar li a {
+display: flex;
+height: 50px;
+width: 100%;
+border-radius: 12px;
+align-items: center;
+text-decoration: none;
+transition: all 0.4s ease;
+background: #000000; /* Dark background color for sidebar */
+
+}
+.dashboard-sidebar li a:hover {
+background: #29292ac6; /* Dark background color for sidebar */
+
+}
+
+/* Link text and icon hover effects */
+.dashboard-sidebar li a:hover .links_name {
+transition: all 0.5s ease;
+}
+.dashboard-sidebar li a:hover i {
+transition: all 0.5s ease;
+}
+
+/* Link text styling */
+.dashboard-sidebar li a .links_name {
+color: #fff;
+font-size: 15px;
+font-weight: 400;
+white-space: nowrap;
+opacity: 0; /* Hidden by default */
+pointer-events: none;
+transition: 0.4s;
+}
+
+/* Icon styling within sidebar items */
+.dashboard-sidebar li i {
+height: 50px;
+line-height: 50px; /* Centers icon vertically */
+font-size: 18px;
+border-radius: 12px;
+}
+
+/* Profile details styling */
+.dashboard-sidebar li .profile-details {
+display: flex;
+align-items: center;
+flex-wrap: nowrap;
+}
+.dashboard-sidebar li img {
+height: 45px;
+width: 45px;
+object-fit: cover;
+border-radius: 6px;
+margin-right: 10px;
+}
+
+/* Sidebar input (search) styling */
+.dashboard-sidebar input {
+font-size: 15px;
+color: #FFF;
+font-weight: 400;
+outline: none;
+height: 50px;
+width: 50px; /* Default width for search input */
+border: none;
+border-radius: 12px;
+transition: all 0.5s ease;
+background: #353535; /* Input background color */
+}
+
+/* Search button styling */
+.dashboard-sidebar .bx-search {
+position: absolute;
+top: 50%;
+left: 0;
+transform: translateY(-50%);
+font-size: 22px;
+background: #1d1b31;
+color: #FFF;
+}
+.dashboard-sidebar .bx-search:hover {
+background: #FFF; /* Hover background color */
+color: #11101d; /* Hover text color */
+}
+
+/* Profile section styling */
+.dashboard-sidebar li.profile {
+position: fixed;
+height: 60px;
+width: 78px; /* Default width for profile section */
+left: 0;
+bottom: -8px;
+padding: 10px 14px;
+background: rgb(41, 41, 41);
+transition: all 0.5s ease;
+overflow: hidden;
+}
+.dashboard-sidebar li.profile .name {
+font-size: 15px;
+font-weight: 400;
+color: #fff;
+white-space: nowrap;
+}
+.dashboard-sidebar li.profile .job {
+font-size: 12px;
+font-weight: 400;
+color: #fff;
+white-space: nowrap;
+}
+
+/* Logout button styling */
+.dashboard-sidebar .profile #log_out {
+position: absolute;
+top: 50%;
+right: 0;
+transform: translateY(-50%);
+background: rgb(41, 41, 41);
+width: 100%;
+height: 60px;
+line-height: 60px; /* Centers logout icon vertically */
+border-radius: 0px;
+transition: all 0.5s ease;
+}
+
+/* Expanded sidebar styles */
+.dashboard-sidebar.open {
+width: 250px; /* Expanded sidebar width */
+z-index: 10;
+}
+.dashboard-sidebar.open .logo-details .icon {
+opacity: 1; /* Shows icon in expanded state */
+}
+.dashboard-sidebar.open .logo-details .logo_name {
+opacity: 1; /* Shows logo name in expanded state */
+}
+.dashboard-sidebar.open .logo-details #btn {
+text-align: right;
+}
+.dashboard-sidebar.open li .tooltip {
+display: none; /* Hides tooltips when expanded */
+}
+.dashboard-sidebar.open li a .links_name {
+opacity: 1; /* Shows link names when expanded */
+pointer-events: auto;
+}
+.dashboard-sidebar.open input {
+padding: 0 20px 0 50px;
+width: 100%; /* Expands input width */
+}
+.dashboard-sidebar.open .bx-search:hover {
+background: #1d1b31;
+color: #FFF;
+}
+.dashboard-sidebar.open li.profile {
+width: 250px; /* Expands profile section */
+}
+.dashboard-sidebar.open .profile #log_out {
+width: 50px; /* Shrinks logout button */
+background: none;
+}
+
+
+.dashboard-sidebar li.active a {
+    background: #292929; /* Highlight background color for active item */
+    color: #fff; /* Text color */
+    font-weight: bold; /* Optional: Make text bold */
+}
+
+.dashboard-sidebar li.active i {
+    color: #f39c12; /* Optional: Highlight icon color */
+}
+/* Main content (home section) styling */
+.home-section {
+    min-height: 100vh; /* Full viewport height */
+    top: 0;
+    margin-left: 78px; /* Align with the sidebar */
+    width: calc(100% - 78px); /* Adjust width for sidebar */
+    z-index: 1; /* Keeps content on top */
+    overflow: hidden; /* Prevent pseudo-elements from overflowing */
+    position: relative; /* Ensure background and content align properly */
+}
+
+.home-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../bg2.jfif') no-repeat center center; /* Background image */
+    background-size: cover; /* Ensure the image covers the entire section */
+    z-index: 0; /* Keep background image below the content */
+}
+
+.home-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(128, 128, 128, 0.4); /* Semi-transparent gray overlay */
+    z-index: 1; /* Keep overlay above the background but below the content */
+    pointer-events: none; /* Ensure the overlay doesn't block content interaction */
+}
+
+.home-section > * {
+    position: relative; /* Ensure content stays above the overlay */
+    z-index: 2; /* Keep content on the topmost layer */
+}
+
+
+.home-section .text {
+display: inline-block;
+color: #11101d;
+font-size: 25px;
+font-weight: 500;
+margin: 18px;
+}

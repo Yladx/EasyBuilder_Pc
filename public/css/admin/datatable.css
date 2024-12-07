@@ -1,0 +1,341 @@
+/* General table styling */
+.maintable table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2b2b2b; /* Dark background */
+    color: #f8f9fa; /* Light text for contrast */
+    border: 1px solid #444; /* Subtle border around the table */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Header styling */
+.maintable table thead {
+    background-color: #343a40; /* Darker background for header */
+    color: #ffffff; /* White text for header */
+    font-weight: bold;
+}
+
+.maintable table thead th {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #555;
+}
+
+/* Body styling */
+.maintable table tbody tr {
+    border-bottom: 1px solid #444; /* Row separator */
+}
+
+.maintable table tbody tr:nth-child(even) {
+    background-color: #3d3d3d; /* Alternate row color */
+}
+
+.maintable table tbody tr:hover {
+    background-color: #ffffff; /* Highlight row on hover */
+    color: #ffffff; /* Ensure text is visible */
+    cursor: pointer;
+}
+
+.maintable table tbody td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/* Actions column buttons */
+.maintable table tbody td .btn {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.maintable table tbody td .btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #ffffff;
+}
+
+.maintable table tbody td .btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.maintable table tbody td .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+}
+/* General styles for DataTables elements */
+.dataTables_wrapper {
+    color: white; /* Default text color for all elements */
+}
+
+/* General styles for search, entries, and pagination */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    padding: 10px 0; /* Add padding to the top and bottom */
+    color: white; /* Ensure all text is white */
+}
+
+/* Customize the dropdown (entries selection) */
+.dataTables_wrapper .dataTables_length select {
+    background-color: #2c2c2c; /* Dark background for dropdown */
+    color: white; /* White text */
+    border: 1px solid #444; /* Dark border */
+    padding: 5px; /* Padding for better readability */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Customize the search input */
+.dataTables_wrapper .dataTables_filter input {
+    width: 100%; /* Ensure full width */
+    padding: 8px; /* Add padding inside the input */
+    border: 1px solid #444; /* Dark border */
+    background-color: #2c2c2c; /* Dark background for input */
+    color: white; /* White text */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Placeholder text styling for search input */
+.dataTables_wrapper .dataTables_filter input::placeholder {
+    color: #bbb; /* Light gray for placeholder text */
+}
+
+/* Pagination buttons styling */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 6px 12px; /* Button padding */
+    margin: 0 5px; /* Spacing between buttons */
+    border: 1px solid #444; /* Dark border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #2c2c2c; /* Match input background */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Hover and active state for pagination buttons */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #007bff; /* Blue hover background */
+    color: white; /* White text */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #007bff; /* Active page background */
+    color: white; /* White text */
+}
+
+/* Disabled pagination button styles */
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    background-color: #444; /* Darker background for disabled buttons */
+    color: #777; /* Muted text */
+    cursor: not-allowed; /* Disabled cursor */
+}
+
+/* Adjust font size and spacing for DataTables info text */
+.dataTables_wrapper .dataTables_info {
+    font-size: 14px; /* Slightly smaller font */
+    font-weight: 500; /* Medium weight for better readability */
+    color: white; /* Ensure white text */
+}
+
+/* Adjust font size and spacing for entries text */
+.dataTables_wrapper .dataTables_length label,
+.dataTables_wrapper .dataTables_filter label {
+    font-size: 14px; /* Consistent font size */
+    font-weight: 500; /* Medium weight for better readability */
+    color: white; /* Ensure white text */
+}
+
+
+
+/* Remove spacing around tabs */
+.nav-tabs {
+    margin-bottom: 0; /* Remove bottom margin */
+    padding: 0; /* Remove padding */
+    border-bottom: 2px solid #444; /* Match dark border */
+    background-color: #2c2c2c; /* Dark background */
+    border-radius: 5px 5px 0 0; /* Rounded top corners for the bookmark effect */
+}
+
+/* Style for individual tab items */
+.nav-tabs .nav-link {
+    color: #ccc; /* Light gray for unselected tabs */
+    background-color: #2c2c2c; /* Match dark background */
+    border: 1px solid #444; /* Dark border */
+    border-radius: 0; /* Remove rounding for seamless alignment */
+    margin: 0; /* Remove margin between tabs */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+/* Active tab styling */
+.nav-tabs .nav-link.active {
+    background-color: #9f9d9d !important; /* Darker background for active tab */
+    color: white; /* White text for active tab */
+    border: 1px solid #444 !important; /* Ensure consistent border */
+    border-bottom-color: transparent; /* Seamless with content below */
+    z-index: 1; /* Elevate active tab */
+}
+
+/* Remove gaps or spaces between tabs */
+.nav-tabs .nav-item {
+    margin: 0; /* Remove tab spacing */
+    padding: 0; /* Remove extra padding */
+}
+
+/* Hover effect for tabs */
+.nav-tabs .nav-link:hover {
+    background-color: #555; /* Slightly lighter hover effect */
+    color: white; /* White text on hover */
+}
+
+
+/* Style for the tab content area to integrate with the table */
+.tab-content {
+    background-color: #2c2c2c; /* Match dark theme */
+    border: 1px solid #444; /* Dark border */
+    padding: 10px; /* Add padding for better spacing */
+    border-radius: 0 5px 5px 5px; /* Rounded bottom corners */
+    margin-top: -1px; /* Prevent gap between tabs and content */
+}
+.dataTables_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0.5rem 1rem;
+
+}
+
+.dataTables_filter {
+    flex: 1; /* Search bar takes available space */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dataTables_filter input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: white;
+    background-color: #333;
+}
+
+.dataTables_length {
+    flex: 1; /* Entries dropdown shares space with search bar */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+}
+.dt-button-collection .dropdown-item {
+    color: #000 !important;
+}
+.dt-button-collection .dropdown-item:hover {
+    background-color: #e9ecef !important;
+}
+/* Spacing and responsive styling for table controls */
+.top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+}
+.dt-buttons {
+    margin-right: 1rem;
+}
+.dataTables_filter {
+    margin-left: auto;
+}
+.dataTables_length select {
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    min-width: 100px;
+    color: #000 !important;
+    background-color: #fff;
+}
+.dataTables_length select option {
+    color: #000 !important;
+    background-color: #fff;
+}
+.dataTables_filter input {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    min-width: 200px;
+}
+/* Remove the extra dropdown arrow */
+.dt-button.dropdown-toggle::after {
+    display: none !important;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .top {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .dataTables_filter {
+        margin-left: 0;
+    }
+    .dataTables_filter input {
+        width: 100%;
+    }
+    .dt-buttons {
+        margin-right: 0;
+    }
+    .dataTables_length select {
+        width: 100%;
+    }
+}
+/* Bottom pagination styling */
+.bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 1rem 0;
+}
+.dataTables_info {
+    margin-right: auto;
+}
+@media (max-width: 768px) {
+    .bottom {
+        flex-direction: column;
+        align-items: center;
+    }
+    .dataTables_info {
+        margin-right: 0;
+        text-align: center;
+    }
+    .dataTables_paginate {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}
+/* Control search width */
+.search-container {
+    width: auto !important;
+    max-width: 250px !important;
+}
+.search-container input[type="search"] {
+    width: 100% !important;
+    max-width: 250px !important;
+}
+@media (max-width: 768px) {
+    .search-container {
+        width: 100% !important;
+        max-width: none !important;
+    }
+    .search-container input[type="search"] {
+        width: 100% !important;
+        max-width: none !important;
+    }
+}

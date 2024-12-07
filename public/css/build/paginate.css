@@ -1,0 +1,20 @@
+
+    .pagination-container .page-link {
+        color: #545454; /* Primary color */
+        text-decoration: none;
+        border: 1px solid #ddd;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .pagination-container .page-link:hover {
+        background-color: #f8f9fa; /* Light gray hover */
+        color: #000000; /* Darker blue */
+    }
+
+    .pagination-container .page-item.active .page-link {
+        background-color: #434343; /* Bootstrap primary color */
+        border-color: #2c2c2c;
+        color: white;
+    }
+
+

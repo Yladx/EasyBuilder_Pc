@@ -1,0 +1,46 @@
+@import url('aside.css');
+@import url('manageads.css');
+@import url('card.css');
+@import url('datatable.css');
+@import url('managemodules.css');
+@import url('../build/build.css'); /* Using a url */
+@import url('../component/modalstickyfooter.css');
+    /* Sticky delete button column */
+    .sticky-actions {
+        position: sticky;
+        right: 0;
+        background-color: white; /* Optional: background color to ensure visibility */
+        z-index: 1; /* Ensures it stays above other elements */
+    }
+
+    .sticky-actions button {
+        filter: grayscale(50%);
+        border-style: double;
+        font-size: 10px; /* Smaller font size */
+        padding: 5px 10px; /* Adjust padding to make the button smaller */
+        height: auto; /* Adjust height to match the new padding */
+        width: auto; /* Adjust width to fit the content */
+    }
+
+    .text-headert{
+        color: white;
+    }
+
+
+    .easypc-btn {
+        text-decoration: none;
+        background-color: rgba(30, 30, 30, 0.876); /* Black background */
+        color: white; /* White text */
+        border: none; /* Remove borders */
+        padding: 10px ; /* Add padding */
+        border-radius: 10px; /* Rounded corners */
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease; /* Smooth transition */
+    }
+
+    /* Hover Effect */
+    .easypc-btn:hover {
+        background: linear-gradient(to bottom, rgb(39, 39, 39), rgba(255, 255, 255, 0.771)); /* Gradient effect */
+        color: rgb(64, 64, 64); /* Change text color to black for contrast */
+    }

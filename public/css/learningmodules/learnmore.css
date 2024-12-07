@@ -1,0 +1,214 @@
+/* Sidebar container */
+.learningmodules-sidebar {
+    width: 300px; /* Adjusted width */
+    background-color: #2c2c2c;
+    position: fixed;
+    top: 80px; /* Ensure it doesn't overlap with the header */
+    bottom: 0;
+    left: 0;
+    border-right: 1px solid #444;
+    overflow-y: auto;
+    z-index: 9;
+}
+
+/* Sidebar header */
+.learningmodules-sidebar .sidebar-header {
+    width: 100%;
+    padding: 15px;
+    background-color: #3b3b3b;
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid #444;
+}
+
+/* Sidebar links */
+.learningmodules-sidebar .nav > li > a,
+.learningmodules-sidebar .nav > li > .collapse > li > a {
+    width: 100%;
+    padding: 15px 20px;
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    background-color: #2c2c2c;
+    border-left: 3px solid transparent;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effects */
+.learningmodules-sidebar .nav > li > a:hover,
+.learningmodules-sidebar .nav > li > .collapse > li > a:hover {
+    color: #fff;
+    background-color: #444;
+    border-left: 3px solid #f3f3f3;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Main content wrapper */
+.learningmodules-content {
+    margin-left: 300px; /* Adjusted margin to match the new sidebar width */
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: calc(100vh - 60px); /* Adjust for header height */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Toggler styles */
+#toggleSidebar {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 315px; /* Adjusted to align with new sidebar width */
+    padding: 10px;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    border-radius: 50%;
+}
+
+#toggleSidebar:hover {
+    color: #444;
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.sidebar-collapsed #toggleSidebar {
+    left: 15px; /* Adjusted for collapsed sidebar */
+}
+
+/* Collapsed sidebar adjustments */
+@media (max-width: 768px) {
+    #toggleSidebar {
+        display: block;
+    }
+
+    .learningmodules-content {
+        margin-left: 0 !important;
+    }
+
+    body.sidebar-collapsed .learningmodules-sidebar {
+        width: 0;
+    }
+
+    body.sidebar-collapsed .learningmodules-content {
+        margin-left: 0;
+    }
+}
+
+/* Custom scrollbar */
+.learningmodules-sidebar::-webkit-scrollbar {
+    width: 5px; /* Adjust width of the scrollbar */
+}
+
+.learningmodules-sidebar::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 10px;
+}
+
+.learningmodules-sidebar::-webkit-scrollbar-track {
+    background-color: #2c2c2c;
+}
+/* Module group styles */
+.module-group {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 20px;
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: bolder;
+    background-color: #2c2c2c;
+    border-left: 3px solid transparent;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.module-group:hover {
+    color: #fff;
+    background-color: #444;
+    border-left: 3px solid #f3f3f3;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Module title styles */
+.module-title {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 20px;
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    background-color: #2c2c2c;
+    border-left: 3px solid transparent;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.module-title:hover {
+    color: #fff;
+    background-color: #444;
+    border-left: 3px solid #f3f3f3;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Submenu items */
+.module-submenu {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Ensure dropdown items maintain width */
+.module-submenu .module-title,
+.module-submenu .module-group {
+    width: 100%;
+    padding-left: 35px; /* Increase left padding for indentation */
+}
+
+/* Remove transform on hover to ensure 100% coverage */
+.learningmodules-sidebar .nav > li > a:hover,
+.learningmodules-sidebar .nav > li > .collapse > li > a:hover,
+.module-group:hover,
+.module-title:hover {
+    transform: none;
+}
+
+/* Collapse animation styles */
+.collapse, .collapsing {
+    width: 100% !important;
+}
+
+.collapse.show {
+    display: block;
+    width: 100% !important;
+}
+
+/* Ensure dropdown items maintain width */
+.module-submenu .module-title,
+.module-submenu .module-group {
+    width: calc(100% - 15px); /* Account for submenu margin */
+    margin-left: 15px;
+}
+
+.module-submenu .module-title:hover,
+.module-submenu .module-group:hover {
+    width: calc(100% - 20px); /* Account for submenu margin and transform */
+}
+
+/* Dropdown active state styles */
+[data-bs-toggle="collapse"].active {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.dropdown-toggle::after {
+    transition: transform 0.2s ease;
+}
+
+.dropdown-toggle.active::after {
+    transform: rotate(180deg);
+}

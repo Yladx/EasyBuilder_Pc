@@ -1,0 +1,85 @@
+/* Animation for Form Fields */
+.form-group {
+    position: relative;
+    margin-bottom: 2.5rem; /* Increase margin to accommodate error message */
+}
+
+/* Floating Label Initial State */
+    .floating-label {
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        font-size: 1rem;
+        color: #6c757d;
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
+        background-color: #ffffff;
+        padding: 0 5px;
+    }
+
+    /* Active State (Label Moves Up and Becomes Bold) */
+    .floating-label.active {
+        top: -10px; /* Move the label up */
+        left: 10px; /* Adjust horizontal position */
+        font-size: 0.85rem; /* Make the label smaller */
+        color: #343a40; /* Change label color */
+        font-weight: bold; /* Make the label bold */
+    }
+
+    /* Input Field Styling */
+    .animated-input {
+        border-radius: 10px !important;
+
+        background-color: #f8f9fa;
+        border: 3px solid #000000;
+
+        font-size: 1rem;
+        padding: 10px 10px 10px 15px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .animated-input:focus {
+        border-color: #000000;
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 58, 64, 0.5);
+    }
+
+.form-group {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.form-group .btn {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 20px;
+    transform: none;
+    z-index: 2;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+}
+
+.form-control.is-invalid ~ .btn {
+    top: 50%; /* Ensure it remains centered on the input field */
+}
+
+    /* Center the CAPTCHA container */
+div.g-recaptcha {
+    display: inline-block; /* Ensure inline-block for centering */
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* Optional: Add padding or border around the CAPTCHA */
+.captcha-container {
+    text-align: center; /* Center the CAPTCHA wrapper */
+    padding: 10px; /* Add some padding around the CAPTCHA */
+    background-color: #000; /* Optional background color */
+    border-radius: 8px; /* Optional rounded corners */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+}

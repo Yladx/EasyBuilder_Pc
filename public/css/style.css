@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import url("build/build.css"); /* Using a url */
+@import url("modal.css"); /* Using a url */
+@import url("form.css"); /* Using a url */
+@import url("component/footer.css"); /* Using a url */
+@import url("learningmodules/learnmore.css"); /* Using a url */
+@import url("component/modalstickyfooter.css"); /* Using a url */
+@import url("component/header.css"); /* Using a url */
+@import url("home/carousel.css"); /* Using a url */
+
+.dropdown-toggle::after {
+    display: none; /* Hides the dropdown arrow */
+}
+
+/* Styling for jQuery validation error messages */
+label.error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* Error input field border styling */
+input.error {
+    border-color: red;
+}
+
+
+.title-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between message and hr */
+}
+.title-header .message {
+    white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+.title-header hr {
+    flex-grow: 1; /* Makes the hr take up the remaining horizontal space */
+   border: solid 2px rgb(0, 0, 0);
+}
+
+body {
+    background-color: #282828;
+    font-family: "Roboto", serif;
+}
+
+/* EasyPC Button Styling */
+.easypc-btn {
+    text-decoration: none;
+    background-color: #343a40; /* Dark background color */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px ; /* Add padding */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover Effect */
+.easypc-btn:hover {
+    background-color: #23272b; /* Slightly darker on hover */
+    color: #fff; /* White text color */
+}
+
+/* WebKit Scrollbar Styles */
+*::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Reduced from 2.5rem */
+    }
+
+    .lead {
+        font-size: 1rem; /* Reduced font size */
+    }
+
+    .intro-section h2 {
+        font-size: 1.6rem; /* Further reduced for smaller screens */
+    }
+
+    section h2 {
+        font-size: 1.5rem; /* Adjusted for responsiveness */
+    }
+
+    ul li, ol li {
+        font-size: 0.8rem; /* Smaller font for lists */
+    }
+}

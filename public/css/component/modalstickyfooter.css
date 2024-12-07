@@ -1,0 +1,9 @@
+ /* Sticky Delete Button */
+ .sticky-footer {
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #fff;
+    padding: 10px;
+}

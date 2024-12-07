@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+header {
+    font-family: "Poppins", sans-serif;
+    position: sticky;
+    top: 0; /* Stick to the top of the page */
+    z-index: 10; /* Ensure it stays above other elements */
+    background-color: #000; /* Background color for the sticky header */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+}
+
+header .navbar-toggler {
+    border-color: white;
+}
+
+header .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+
+header .nav-item:not(:last-child) {
+    margin-right: 30px;
+}
+
+header .nav-link {
+    position: relative;
+    text-decoration: none;
+    color: white;
+  }
+
+  header .nav-link:hover {
+    color: lightgray; /* Optional: Change link color on hover */
+  }
+
+ header .nav-link::after {
+   content: '';
+   position: absolute;
+   width: 0;
+   height: 3px;
+   display: block;
+   background: white;
+   transition: width 0.3s;
+   bottom: -5px;
+   left: 0;
+  }
+
+  header  .nav-link:hover::after {
+    width: 100%;  /* Expand the underline on hover */
+   }
+
+
+   header  .dropdown-toggle::after {
+    display: none; /* Hides the dropdown arrow */
+}
+
+header  .navbar-toggler {
+    border-color: white;
+}
+
+header   .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+/* Active link styling */
+header .nav-link.active {
+    color: lightgray; /* Change color for active state */
+}
+
+header .nav-link.active::after {
+    width: 100%; /* Ensure underline is fully expanded for active link */
+    background: #ffffff; /* Optional: Use a different color for active underline */
+    transition: background 0.3s ease-in-out, width 0.3s ease-in-out; /* Smooth transition for active styles */
+}
+
+header .dropdown-toggle::after {
+    display: none; /* Hides the dropdown arrow */
+}
+
+
+.offcanvas {
+    width: 250px; /* Adjust width for a compact design */
+}
+
+.offcanvas-header {
+    background-color: #1c1c1c; /* Darker header for distinction */
+    border-bottom: 1px solid #333; /* Subtle separator */
+}
+
+.offcanvas-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.btn-close-white {
+    filter: invert(1); /* Ensures close button is visible on dark background */
+}
+
+.offcanvas-body {
+    padding: 1rem;
+    background-color: #1c1c1c; /* Match the dark theme */
+}
+
+.offcanvas .nav-link {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.offcanvas .nav-link:hover {
+    background-color: #333; /* Highlight link on hover */
+    color: #fff;
+}
+
+.offcanvas .nav-item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+

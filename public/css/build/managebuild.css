@@ -1,0 +1,167 @@
+
+/* Container Styles */
+.build-container {
+    display: flex;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 20px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Default content visibility */
+.default-content {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide specs table by default */
+.build-specs {
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Show specs table and hide default content when hovering over build-image */
+.build-image:hover ~ .build-content .default-content {
+    display: none;
+}
+
+.build-image:hover ~ .build-content .build-specs {
+    display: block;
+}
+
+/* Table Styling */
+.build-specs table {
+    width: 100%;
+    background-color: #333333;
+    color: #e0e0e0;
+    border-collapse: collapse;
+    font-size: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.build-specs th, .build-specs td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #444444;
+    word-wrap: break-word;
+}
+
+.build-specs th {
+    background-color: #444444;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Left Side Image with Gradient Overlay */
+.build-image {
+    position: relative;
+    width: 40%;
+    min-height: 200px;
+
+    transition: background 0.3s ease;
+}
+
+/* Right Side Content */
+.build-image {
+    position: relative;
+    width: 40%; /* Adjust to your desired width */
+    min-height: 200px; /* Set a minimum height */
+    background: url('path-to-your-image.jpg') no-repeat center center; /* Center the background image */
+    background-size: contain; /* Ensure the entire image is visible inside the container */
+    transition: background 0.3s ease; /* Optional: For smooth transitions */
+    border-radius: 10px; /* Optional: Rounded corners */
+}
+
+/* Title, Date, and Description Styling */
+.build-date {
+    font-size: 0.8rem;
+    color: #b5b5b5;
+    text-align: right;
+}
+
+.build-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e0e0e0;
+    margin: 10px 0;
+}
+
+.build-tags {
+    margin-bottom: 10px;
+}
+
+/* Badge Styling */
+.badge {
+    background-color: #a94442;
+    color: #ffffff;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.build-description {
+    font-size: 1rem;
+    color: #b5b5b5;
+    line-height: 1.5;
+}
+
+/* Button and Like Section */
+.build-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Action Buttons Styling */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons .btn {
+    width: 110px;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+/* Likes Info */
+.likes-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #b5b5b5;
+}
