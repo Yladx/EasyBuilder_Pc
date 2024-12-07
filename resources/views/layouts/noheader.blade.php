@@ -34,7 +34,11 @@
     </head>
   
     <body >
-   {{ $slot }}
+
+
+        <main>
+            {{ $slot }}
+        </main>
 
     </body>
 
