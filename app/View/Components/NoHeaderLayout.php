@@ -12,6 +12,6 @@ class NoheaderLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.noheader');
+        return view('components.noheader-layout');
     }
 }
