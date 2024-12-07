@@ -36,9 +36,7 @@
     <body >
 
 
-        <main>
-            {{ $slot }}
-        </main>
+   @yield('content')
 
     </body>
 
