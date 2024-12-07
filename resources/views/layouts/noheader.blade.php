@@ -33,7 +33,7 @@
         <!-- Scripts -->
     </head>
   
-    <body class="">
+    <body >
    {{ $slot }}
 
     </body>
