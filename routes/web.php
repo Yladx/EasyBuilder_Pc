@@ -33,9 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/learningmodules/fetch/{id}', [LearningModulesController::class, 'fetchmodule']);
 });
 
-// Storage setup route - Only accessible in local environment
+// Storage setup route
 Route::get('/storage-setup', [App\Http\Controllers\StorageController::class, 'setupStorage'])
-    ->middleware(['auth', 'admin'])
     ->name('storage.setup');
 
 require __DIR__.'/auth.php';
