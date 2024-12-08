@@ -33,9 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/learningmodules/fetch/{id}', [LearningModulesController::class, 'fetchmodule']);
 });
 
-// Storage setup route
-Route::get('/storage-setup', [App\Http\Controllers\StorageController::class, 'setupStorage'])
-    ->name('storage.setup');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/build.php';
