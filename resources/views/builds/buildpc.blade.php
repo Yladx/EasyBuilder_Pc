@@ -530,7 +530,7 @@
    <!-- Instructions Modal -->
    <div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lg">
-           <div class="modal-content">
+           <div class="modal-content ">
                <div class="modal-header border-bottom border-secondary">
                    <h5 class="modal-title" id="instructionsModalLabel">How to Build Your PC</h5>
                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -575,7 +575,7 @@
                <div class="modal-footer border-top border-secondary">
                    <div class="form-check me-auto">
                        <input class="form-check-input" type="checkbox" id="dontShowAgain">
-                       <label class="form-check-label text-white" for="dontShowAgain">
+                       <label class="form-check-label " for="dontShowAgain">
                            Don't show this again
                        </label>
                    </div>
@@ -812,6 +812,7 @@ document.addEventListener('DOMContentLoaded', function() {
  <script src="{{ asset('js/buildpc-utils.js') }}"></script>
  <script src="{{ asset('js/buildpc-components.js') }}"></script>
  <script src="{{ asset('js/buildpc-modal.js') }}"></script>
+
  <script src="{{ asset('js/buildpccompatability-user.js') }}"></script>
 
 
