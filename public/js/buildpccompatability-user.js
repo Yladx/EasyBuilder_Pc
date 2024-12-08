@@ -185,8 +185,13 @@ class BuildCompatibility {
 
         // Open selectedComponentsOffcanvas only after selecting cases for screen sizes below xl
         if (componentType === 'case' && window.innerWidth < 1200) {
-            const selectedComponentsOffcanvas = new bootstrap.Offcanvas(document.getElementById('selectedComponentsOffcanvas'));
-            selectedComponentsOffcanvas.show();
+            const offcanvasElement = document.getElementById('selectedComponentsOffcanvas');
+            const selectedComponentsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+            if (selectedComponentsOffcanvas) {
+                selectedComponentsOffcanvas.toggle();
+            } else {
+                new bootstrap.Offcanvas(offcanvasElement).show();
+            }
         }
     }
 
