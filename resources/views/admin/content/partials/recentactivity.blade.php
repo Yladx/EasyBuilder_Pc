@@ -2,21 +2,15 @@
     <div class="container py-4">
         <!-- Activity Log Container -->
         <div class="logs-container">
-            <h3 class="sticky-top text-center mb-4 bg-dark" style="color: #f8f9fa; z-index: 10; padding: 10px;">
+            <h5 class="sticky-top text-center mb-4 activity-header">
                 Recent Activity Logs
-            </h3>
+            </h5>
 
             @if($logs->isEmpty())
                 <p class="text-center text-muted">No activity logs available.</p>
             @else
                 <table class="table table-borderless text-white mb-0">
-                    <thead>
-                        <tr>
-                            <th style="width: 15%;">Icon</th>
-                            <th style="width: 20%;">Timestamp</th>
-                            <th style="width: 65%;">Activity and Details</th>
-                        </tr>
-                    </thead>
+                   
                     <tbody id="logsContainer">
                         <!-- Dynamic content will be populated here -->
                     </tbody>
@@ -24,6 +18,14 @@
             @endif
         </div>
     </div>
+
+    <div class="d-flex justify-content-center mt-1 mb-3">
+        <button type="button" class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm hover-lift" id="viewAllActivities">
+            <i class="fas fa-history me-2"></i>
+            View All Activities
+        </button>
+    </div>
+
 </section>
 
 <script>
@@ -36,75 +38,251 @@
                         const recentActivities = data.recentActivities;
                         const logsContainer = document.getElementById('logsContainer');
                         logsContainer.innerHTML = ''; // Clear existing logs
-                        recentActivities.forEach(log => {
-                            // Define icons and colors for actions
-                            const actionIcons = {
-                                'update': {icon: 'fa-pencil-alt', color: '#FFA500'},
-                                'delete': {icon: 'fa-trash', color: '#FF0000'},
-                                'view': {icon: 'fa-eye', color: '#1E90FF'},
-                                'login': {icon: 'fa-sign-in-alt', color: '#32CD32'},
-                                'logout': {icon: 'fa-sign-out-alt', color: '#8B4513'},
-                                'request': {icon: 'fa-paper-plane', color: '#FFD700'},
-                                'rate': {icon: 'fa-star', color: '#FFFF00'},
-                            };
 
-                            const iconClass = actionIcons[log.action]?.icon || 'fa-info-circle';
-                            const iconColor = actionIcons[log.action]?.color || '#CCCCCC';
+                        // Group activities by date
+                        const groupedActivities = groupActivitiesByDate(recentActivities);
 
-                            const logEntry = document.createElement('tr');
-                            logEntry.classList.add('align-middle');
-                            logEntry.innerHTML = `
-                                <td>
-                                    <div class="icon-circle d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; background-color: #0b0b0b; border-radius: 50%;">
-                                        <i class="fa ${iconClass}" style="color: ${iconColor}; font-size: 18px;"></i>
+                        // Create and append log entries for each date group
+                        Object.keys(groupedActivities).forEach(date => {
+                            // Add date header
+                            const dateHeader = document.createElement('tr');
+                            dateHeader.innerHTML = `
+                                <td colspan="2" class="date-header">
+                                    <div class="date-divider">
+                                        <span>${date}</span>
                                     </div>
                                 </td>
-                                <td style="color: #6c757d; font-size: 14px;">${log.activity_timestamp}</td>
-                                <td>
-                                    <p style="margin: 0; font-weight: bold; color: #adb5bd;">${log.activity}</p>
-                                    <i class="mw-2"> 
-                                        <p style="
-                                            margin: 0; 
-                                            color: #6c757d; 
-                                            font-size: 10px; 
-                                            white-space: nowrap; 
-                                            overflow: hidden; 
-                                            text-overflow: ellipsis; 
-                                            max-width: 200px;
-                                        "> 
-                                            - ${log.activity_details}
-                                        </p>
-                                    </i>
-                                </td>
                             `;
-                            logsContainer.appendChild(logEntry);
+                            logsContainer.appendChild(dateHeader);
+
+                            // Add activities for this date
+                            groupedActivities[date].forEach(log => {
+                                const logEntry = createLogEntry(log);
+                                logsContainer.appendChild(logEntry);
+                            });
                         });
                     }
                 })
-                .catch(error => {
-                    console.error('Error fetching recent activities:', error);
-                });
+                .catch(error => console.error('Error:', error));
         }
 
-        // Initial update
+        function groupActivitiesByDate(activities) {
+            const groups = {};
+            activities.forEach(activity => {
+                const date = new Date(activity.activity_timestamp).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                if (!groups[date]) {
+                    groups[date] = [];
+                }
+                groups[date].push(activity);
+            });
+            return groups;
+        }
+
+        function getIconClass(action) {
+            switch(action.toLowerCase()) {
+                case 'login':
+                    return 'fa-sign-in-alt';
+                case 'logout':
+                    return 'fa-sign-out-alt';
+                case 'create':
+                    return 'fa-plus';
+                case 'update':
+                    return 'fa-edit';
+                case 'delete':
+                    return 'fa-trash';
+                case 'view':
+                    return 'fa-eye';
+                default:
+                    return 'fa-circle';
+            }
+        }
+
+        function getIconBackground(action) {
+            switch(action.toLowerCase()) {
+                case 'login':
+                    return 'login';
+                case 'logout':
+                    return 'logout';
+                case 'create':
+                    return 'create';
+                case 'update':
+                    return 'update';
+                case 'delete':
+                    return 'delete';
+                case 'view':
+                    return 'view';
+                default:
+                    return 'default';
+            }
+        }
+
+        function createLogEntry(log) {
+            const logEntry = document.createElement('tr');
+            const iconClass = getIconClass(log.action);
+            const iconBackground = getIconBackground(log.action);
+            const time = new Date(log.activity_timestamp).toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            logEntry.classList.add('align-middle');
+            logEntry.innerHTML = `
+                <td>
+                    <div class="activity-icon ${iconBackground}">
+                        <i class="fa ${iconClass}"></i>
+                    </div>
+                </td>
+                <td>
+                    <div class="activity-content">
+                        <p class="activity-title">${log.activity}</p>
+                        <p class="activity-details">${log.activity_details}</p>
+                        <small class="activity-time">${time}</small>
+                    </div>
+                </td>
+            `;
+            return logEntry;
+        }
+
+        // Initial load
         updateRecentActivities();
 
-        // Periodic updates every 2 seconds
-        setInterval(updateRecentActivities, 2000);
+        // Refresh every 30 seconds
+        setInterval(updateRecentActivities, 30000);
     });
 </script>
 
 <style>
-/* Container Styling */
-.logs-container {
-    box-sizing: border-box;
-    max-height: 500px;
-    
-    overflow-y: auto;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.activity-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
+.activity-icon i {
+    font-size: 0.9rem;
+    color: white;
+}
+
+.activity-content {
+    padding: 5px 0;
+}
+
+.activity-title {
+    margin: 0;
+    color: #e9ecef;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.activity-details {
+    margin: 2px 0;
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.activity-time {
+    color: #0dcaf0;
+    font-size: 11px;
+    font-weight: 500;
+    background: rgba(13, 202, 240, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 4px;
+}
+
+.date-header {
+
+    padding: 15px 0 5px 0 !important;
+}
+
+.date-divider {
+    position: relative;
+    text-align: center;
+    color: #6c757d;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 0;
+}
+
+.date-divider span {
+    background: #1a1a1a;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.date-divider:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #2a2a2a;
+}
+
+/* Login - Blue gradient */
+.activity-icon.login {
+    background: linear-gradient(45deg, #0f1924, #2a5378);
+}
+
+/* Logout - Red gradient */
+.activity-icon.logout {
+    background: linear-gradient(45deg, #1a1a1a, #8B0000);
+}
+
+/* Create - Green gradient */
+.activity-icon.create {
+    background: linear-gradient(45deg, #0f1924, #006400);
+}
+
+/* Update - Orange gradient */
+.activity-icon.update {
+    background: linear-gradient(45deg, #1a1a1a, #CD853F);
+}
+
+/* Delete - Red gradient */
+.activity-icon.delete {
+    background: linear-gradient(45deg, #1a1a1a, #8B0000);
+}
+
+/* View - Purple gradient */
+.activity-icon.view {
+    background: linear-gradient(45deg, #1a1a1a, #483D8B);
+}
+
+/* Default - Gray gradient */
+.activity-icon.default {
+    background: linear-gradient(45deg, #1a1a1a, #4f4f4f);
+}
+
+.activity-header {
+    color: #f8f9fa;
+    z-index: 10;
+    padding: 10px;
+    background: linear-gradient(180deg, #0d0d0d, #1a1a1a, #2d1810);
+;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logs-container {
+    box-sizing: border-box;
+    max-height: 440px;
+    
+    overflow-y: auto;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 /* Webkit (Chrome, Edge, Safari) Scrollbar Styles */
 .logs-container::-webkit-scrollbar {
@@ -131,7 +309,6 @@
     background: #262440; /* Corner color (if both vertical and horizontal scrollbars are present) */
 }
 
-
 /* Table Styling */
 .table {
     color: #adb5bd;
@@ -147,14 +324,25 @@
     font-size: 14px;
 }
 
-/* Icon Circle */
-.icon-circle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: #343a40;
-    border-radius: 50%;
+.hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2) !important;
+}
+
+#viewAllActivities {
+    background: linear-gradient(45deg, #0f1924, #2a5378);
+    border: none;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+#viewAllActivities:hover {
+    background: linear-gradient(45deg, #162736, #3a6ea3);
+    box-shadow: 0 4px 12px rgba(42, 83, 120, 0.3) !important;
 }
 </style>

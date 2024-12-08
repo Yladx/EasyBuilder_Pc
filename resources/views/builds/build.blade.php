@@ -164,7 +164,7 @@
                     @endforeach
                  <!-- Pagination Links -->
                     <div class="pagination-container my-4 ">
-                        {{ $builds->links('pagination::bootstrap-5') }}
+                        {{ $builds->appends(['search' => request('search'), 'sort' => request('sort')])->links('pagination::bootstrap-5') }}
                     </div>
                 @endif
 

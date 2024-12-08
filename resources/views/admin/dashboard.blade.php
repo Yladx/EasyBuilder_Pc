@@ -4,9 +4,11 @@
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
 <!-- Green Card -->
 > <div class="text-center mb-4">
-    <h1 class="fw-bold text-white">Welcome to Admin Dashboard</h1>
+    <h3 class="fw-bold text-white">Welcome to Admin Dashboard</h3>
 </div>
-
+    <div class="row">
+        
+        <div class="col-md-9 col-xs-12"> 
            <!-- 6x6 Grid for Session Counts -->
            <div class="row mt-4">
             <!-- Guest Sessions -->
@@ -16,7 +18,7 @@
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
                     <div class="card-content">
-                        <h5>Guest Sessions<s</h5>
+                        <h5>Guest Sessions</h5>
                         <p class="fs-2 guest-sessions-count">{{ $guestSessionsCount }}</p>
 
                     </div>
@@ -45,11 +47,17 @@
             <div class="custom-card bg-green chart-container" style="position: relative; height:50vh; width:100%;">
                 <canvas id="activityLogChart"></canvas>
             </div>
-            <div class="text text-white text-center mt-3 d-flex justify-content-center">
-                <p class="m-0">User Activities</p>
-            </div>
+          
         </div>
     </div>
+
+        <div class="col-md-3 col-xs-12 mt-1">
+            @include('admin.content.partials.recentactivity')
+        </div>
+
+    </div>
+    </div>
+   
 
     <!-- Include Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

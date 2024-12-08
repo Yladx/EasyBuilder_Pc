@@ -812,7 +812,6 @@ document.addEventListener('DOMContentLoaded', function() {
  <script src="{{ asset('js/buildpc-utils.js') }}"></script>
  <script src="{{ asset('js/buildpc-components.js') }}"></script>
  <script src="{{ asset('js/buildpc-modal.js') }}"></script>
-
  <script src="{{ asset('js/buildpccompatability-user.js') }}"></script>
 
 

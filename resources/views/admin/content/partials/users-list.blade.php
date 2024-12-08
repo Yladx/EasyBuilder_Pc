@@ -89,6 +89,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                  
                         <th>Email</th>
                         <th>Email Verified At</th>
                         <th>Created At</th>
@@ -99,11 +102,14 @@
                     @foreach ($users as $user)
                         <tr onclick="showUserInfo({{ $user->id }})" style="cursor: pointer;">
                             <td data-label="ID">{{ $user->id }}</td>
-                            <td data-label="Name">{{ $user->name }}</td>
+                            <td data-label="Username">{{ $user->name }}</td>
+                            <td data-label="First Name">{{ $user->fname }}</td>
+                            <td data-label="Last Name">{{ $user->lname }}</td>
+                      
                             <td data-label="Email">{{ $user->email }}</td>
                             <td data-label="Email Verified At">{{ $user->email_verified_at ?? 'Not verified' }}</td>
                             <td data-label="Created At">{{ $user->created_at }}</td>
-                            <td data-label="Builds">
+                            <td class="text-center" data-label="Builds">
                                 <span class="badge bg-primary">{{ $user->total_builds ?? 0 }}</span> / 
                                 <span class="badge bg-success">{{ $user->published_builds ?? 0 }}</span> / 
                                 <span class="badge bg-danger">{{ $user->unpublished_builds ?? 0 }}</span>
@@ -159,7 +165,7 @@ $(document).ready(function() {
         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
             if (value === '') return true; // Show all if no filter
             
-            const verificationStatus = data[3]; // Email Verified At column
+            const verificationStatus = data[5]; // Email Verified At column
             if (value === 'verified') {
                 return verificationStatus !== 'Not verified';
             } else if (value === 'unverified') {
@@ -358,7 +364,8 @@ function refreshUsersTable() {
                     const row = `
                         <tr onclick="showUserInfo(${user.id})" style="cursor: pointer;">
                             <td data-label="ID">${user.id}</td>
-                            <td data-label="Name">${user.name}</td>
+                            <td data-label="First Name">${user.fname}</td>
+                            <td data-label="Last Name">${user.lname}</td>
                             <td data-label="Username">${user.username}</td>
                             <td data-label="Email">${user.email}</td>
                             <td data-label="Email Verified At">${user.email_verified_at || 'Not verified'}</td>

@@ -2,39 +2,76 @@
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
         <div class="text text-white">Manage Components</div>
 
-        <div class="row mb-4">
-            <div class="d-flex flex-wrap">
-                <div class="stat-card" style="width: 14.28%; min-width: 140px; background: linear-gradient(45deg, #007bff, black); color: white; padding: 10px;">
+        <style>
+            .stat-card {
+                width: 14.28%;
+                min-width: 100px;
+                padding: 8px 5px;
+                color: white;
+                transition: all 0.3s ease;
+                margin: 0;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .stat-card:first-child {
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+            .stat-card:last-child {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+            .stat-card:hover {
+                transform: translateY(-2px);
+            }
+            .stat-value {
+                font-size: 1rem;
+                font-weight: bold;
+                margin-top: 3px;
+            }
+            .stats-container {
+                background:none;
+                padding: 1px;
+                border-radius: 4px;
+            }
+        </style>
+
+        <div class="row mb-3">
+            <div class="d-flex flex-wrap stats-container">
+                <div class="stat-card" style="background: linear-gradient(225deg, rgba(13, 71, 161, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
                         <span class="fw-bold" style="font-size: 0.75rem;">CPU: <span id="cpuCount" style="font-size: 0.7rem;">0</span></span>
                     </div>
                 </div>
-                <div class="stat-card" style="width: 14.28%; min-width: 140px; background: linear-gradient(45deg, #28a745, black); color: white; padding: 10px;">
+                <div class="stat-card" style="background: linear-gradient(225deg, rgba(46, 125, 50, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
                         <span class="fw-bold" style="font-size: 0.75rem;">GPU: <span id="gpuCount" style="font-size: 0.7rem;">0</span></span>
                     </div>
                 </div>
-                <div class="stat-card" style="width: 14.28%; min-width: 140px; background: linear-gradient(45deg, #ffc107, black); color: white; padding: 10px;">
+                <div class="stat-card" style="background: linear-gradient(225deg, rgba(245, 124, 0, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
                         <span class="fw-bold" style="font-size: 0.75rem;">MB: <span id="motherboardCount" style="font-size: 0.7rem;">0</span></span>
                     </div>
                 </div>
-                <div class="stat-card" style="width: 14.28%; min-width: 140px; background: linear-gradient(45deg, #17a2b8, black); color: white; padding: 10px;">
+                <div class="stat-card" style="background: linear-gradient(225deg, rgba(0, 151, 167, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
                         <span class="fw-bold" style="font-size: 0.75rem;">RAM: <span id="ramCount" style="font-size: 0.7rem;">0</span></span>
                     </div>
                 </div>
-                <div class="stat-card" style="width: 14.28%; min-width: 140px; background: linear-gradient(45deg, #6c757d, black); color: white; padding: 10px;">
+                <div class="stat-card" style="background: linear-gradient(225deg, rgba(84, 110, 122, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
                         <span class="fw-bold" style="font-size: 0.75rem;">SSD: <span id="storageCount" style="font-size: 0.7rem;">0</span></span>
                     </div>
                 </div>
-                <div class="stat-card" style="width: 14.28%; min-width: 140px; background: linear-gradient(45deg, #343a40, black); color: white; padding: 10px;">
+                <div class="stat-card" style="background: linear-gradient(225deg, rgba(55, 71, 79, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
                         <span class="fw-bold" style="font-size: 0.75rem;">PSU: <span id="powerSupplyCount" style="font-size: 0.7rem;">0</span></span>
                     </div>
                 </div>
-                <div class="stat-card" style="width: 14.28%; min-width: 140px; background: linear-gradient(45deg, #dc3545, black); color: white; padding: 10px;">
+                <div class="stat-card" style="background: linear-gradient(225deg, rgba(198, 40, 40, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
                         <span class="fw-bold" style="font-size: 0.75rem;">CASE: <span id="caseCount" style="font-size: 0.7rem;">0</span></span>
                     </div>
@@ -64,31 +101,59 @@
 
             <div class="tab-content maintable">
 
-                <div class="bg-transparent d-md-flex flex-wrap d-block align-items-center gap-2 mb-3 p-3 rounded" id="filterSection">
-                    <div class="mb-md-0 mb-2">
-                        <select class="form-select shadow-sm" id="filterColumn" style="width: 200px; background-color: #2b3035; color: #fff; border: 1px solid #495057;">
-                            <option value="">Filter By</option>
-                        </select>
-                    </div>
-                    <div class="mb-md-0 mb-2">
-                        <select class="form-select shadow-sm" id="filterValue" style="width: 200px; background-color: #2b3035; color: #fff; border: 1px solid #495057;">
-                            <option value="">Select Value</option>
-                        </select>
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-primary shadow-sm px-4" id="applyFilter" style="background-color: #151516d6; border: none;">
-                            <i class="fas fa-filter me-1"></i> Filter
-                        </button>
-                        <button class="btn btn-secondary shadow-sm" id="resetFilter" style="background-color: #6c757d; border: none;">
-                            <i class="fas fa-undo me-1"></i> Reset
-                        </button>
-                    </div>
-                    <div class="col-md-auto ms-md-auto">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <button class="btn gradient-btn px-4" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                        <i class="fas fa-filter me-1"></i> Filter Options
+                    </button>
+                    <div class="col-md-auto">
                         <div class="input-group">
-                            <span class="input-group-text bg-light border-secondary">
-                                <i class="fas fa-search text-secondary"></i>
-                            </span>
-                            <input type="text" id="searchInput" class="form-control bg-light  text-black border-secondary" placeholder="Search..." style="width: 200px;">
+                            <input type="text" id="searchInput" class="form-control bg-light text-black border-secondary" placeholder="Search..." style="width: 200px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapse mb-3" id="filterCollapse">
+                    <div class="bg-transparent d-md-flex flex-wrap d-block align-items-center gap-2 p-3 rounded border border-secondary" id="filterSection">
+                        <div class="mb-md-0 mb-2">
+                            <select class="form-select shadow-sm" id="filterColumn" style="width: 200px; border: 1px solid #495057;">
+                                <option value="">Filter By</option>
+                            </select>
+                        </div>
+                        <div class="mb-md-0 mb-2">
+                            <select class="form-select shadow-sm" id="filterValue" style="width: 200px; border: 1px solid #495057;">
+                                <option value="">Select Value</option>
+                            </select>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <style>
+                                .gradient-btn {
+                                    background: linear-gradient(45deg, #00000099, #00000099, #0f1924a9, #2a5478a9);
+                                    border: none;
+                                    color: #fff;
+                                    transition: all 0.3s ease;
+                                }
+
+                                .gradient-btn:hover {
+                                    background: linear-gradient(45deg, #000000cc, #0f1924cc, #1a2733cc, #2a5378cc);
+                                    color: #fff;
+                                    transform: translateY(-1px);
+                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                                }
+
+                                .gradient-btn.reset {
+                                    background: linear-gradient(45deg, #00000099, #00000099, #1a1a1aa9, #8B0000a9);
+                                }
+
+                                .gradient-btn.reset:hover {
+                                    background: linear-gradient(45deg, #000000cc, #1a1a1acc, #2d1810cc, #8B0000cc);
+                                }
+                            </style>
+                            <button class="btn gradient-btn px-4" id="applyFilter">
+                                <i class="fas fa-filter me-1"></i> Filter
+                            </button>
+                            <button class="btn gradient-btn reset px-4" id="resetFilter">
+                                <i class="fas fa-undo me-1"></i> Reset
+                            </button>
                         </div>
                     </div>
                 </div>

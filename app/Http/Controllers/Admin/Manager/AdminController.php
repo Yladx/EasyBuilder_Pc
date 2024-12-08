@@ -18,12 +18,17 @@ class AdminController extends Controller
     public function dashboard()
     {
         try {
-            // Log::info('Admin Dashboard Access', [
+
+                 // Log::info('Admin Dashboard Access', [
             //     'user_id' => Auth::id(),
             //     'user_email' => Auth::user()->email ?? 'N/A',
             //     'ip_address' => request()->ip(),
             //     'timestamp' => now()
             // ]);
+            
+            // Get recent activity logs
+            $recentActivity = new RecentActivity();
+            $logs = $recentActivity->getActivityLogs();
 
             // Fetch activity log data grouped by date
             $activityData = ActivityLog::select(
@@ -35,10 +40,6 @@ class AdminController extends Controller
             ->orderBy('date', 'ASC')
             ->get();
 
-            // Log::debug('Dashboard Statistics', [
-            //     'activity_data' => $activityData
-            // ]);
-
             // Count sessions by role
             $guestSessionsCount = DB::table('sessions')
             ->where('role', 'guest')
@@ -47,13 +48,11 @@ class AdminController extends Controller
             $userSessionsCount = DB::table('sessions')
             ->where('role', 'user')
             ->count();
-
-            // Log::debug('Session Statistics', [
+   // Log::debug('Session Statistics', [
             //     'guest_sessions_count' => $guestSessionsCount,
             //     'user_sessions_count' => $userSessionsCount
             // ]);
-
-            return view('admin.dashboard', compact('activityData',  'guestSessionsCount', 'userSessionsCount'));
+            return view('admin.dashboard', compact('logs', 'activityData', 'guestSessionsCount', 'userSessionsCount'));
         } catch (\Exception $e) {
             // Log::error('Error Accessing Admin Dashboard', [
             //     'error' => $e->getMessage(),
