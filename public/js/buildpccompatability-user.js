@@ -182,6 +182,12 @@ class BuildCompatibility {
         if (componentType === 'case') {
             document.querySelectorAll('.select-component').forEach(button => button.disabled = true);
         }
+
+        // Open selectedComponentsOffcanvas only after selecting cases for screen sizes below xl
+        if (componentType === 'case' && window.innerWidth < 1200) {
+            const selectedComponentsOffcanvas = new bootstrap.Offcanvas(document.getElementById('selectedComponentsOffcanvas'));
+            selectedComponentsOffcanvas.show();
+        }
     }
 
     selectRAM(ram) {
