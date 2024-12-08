@@ -530,12 +530,12 @@
    <!-- Instructions Modal -->
    <div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lg">
-           <div class="modal-content bg-dark text-white">
+           <div class="modal-content">
                <div class="modal-header border-bottom border-secondary">
                    <h5 class="modal-title" id="instructionsModalLabel">How to Build Your PC</h5>
                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
-               <div class="modal-body">
+               <div class="modal-body p-5">
                    <div class="instructions-container">
                        <h6 class="mb-3">Follow these steps to build your perfect PC:</h6>
 
