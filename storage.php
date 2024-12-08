@@ -1,59 +1,70 @@
 <?php
-// Create the symbolic link for storage
-$targetFolder = __DIR__.'/storage/app/public';
-$linkFolder = __DIR__.'/public/storage';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// Remove existing symlink if it exists
-if (file_exists($linkFolder)) {
-    if (is_dir($linkFolder)) {
-        rmdir($linkFolder);
-    } else {
-        unlink($linkFolder);
-    }
-}
+function createStorageStructure() {
+    // Define paths
+    $publicPath = __DIR__ . '/public';
+    $storagePath = __DIR__ . '/storage/app/public';
+    $publicStoragePath = $publicPath . '/storage';
 
-function recursiveCopy($src, $dst) {
-    $dir = opendir($src);
-    if (!file_exists($dst)) {
-        mkdir($dst, 0777, true);
-    }
-    
-    while (($file = readdir($dir))) {
-        if (($file != '.') && ($file != '..')) {
-            if (is_dir($src . '/' . $file)) {
-                recursiveCopy($src . '/' . $file, $dst . '/' . $file);
-            } else {
-                copy($src . '/' . $file, $dst . '/' . $file);
-            }
+    try {
+        // Create directories if they don't exist
+        if (!file_exists($storagePath)) {
+            mkdir($storagePath, 0755, true);
+            echo "Created storage directory<br>";
         }
-    }
-    closedir($dir);
-}
 
-// Remove existing directory if it exists
-if (file_exists($linkFolder)) {
-    if (is_dir($linkFolder)) {
-        // Remove directory and its contents
+        if (!file_exists($publicStoragePath)) {
+            mkdir($publicStoragePath, 0755, true);
+            echo "Created public storage directory<br>";
+        }
+
+        // Get all files from storage/app/public
         $files = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($linkFolder, RecursiveDirectoryIterator::SKIP_DOTS),
-            RecursiveIteratorIterator::CHILD_FIRST
+            new RecursiveDirectoryIterator($storagePath, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST
         );
-        
-        foreach ($files as $fileinfo) {
-            if ($fileinfo->isDir()) {
-                rmdir($fileinfo->getRealPath());
+
+        foreach ($files as $fileInfo) {
+            $sourcePath = $fileInfo->getPathname();
+            $relativePath = str_replace($storagePath, '', $sourcePath);
+            $targetPath = $publicStoragePath . $relativePath;
+
+            if ($fileInfo->isDir()) {
+                if (!file_exists($targetPath)) {
+                    mkdir($targetPath, 0755, true);
+                    echo "Created directory: " . $relativePath . "<br>";
+                }
             } else {
-                unlink($fileinfo->getRealPath());
+                $targetDir = dirname($targetPath);
+                if (!file_exists($targetDir)) {
+                    mkdir($targetDir, 0755, true);
+                }
+                
+                if (!file_exists($targetPath) || filemtime($sourcePath) > filemtime($targetPath)) {
+                    copy($sourcePath, $targetPath);
+                    echo "Copied file: " . $relativePath . "<br>";
+                }
             }
         }
-        rmdir($linkFolder);
-    } else {
-        unlink($linkFolder);
+
+        // Create a .gitignore in public/storage
+        $gitignorePath = $publicStoragePath . '/.gitignore';
+        if (!file_exists($gitignorePath)) {
+            file_put_contents($gitignorePath, "*\n!.gitignore\n");
+            echo "Created .gitignore in public/storage<br>";
+        }
+
+        echo "<br>Storage setup completed successfully!<br>";
+        echo "Remember to delete this file after successful execution.<br>";
+        
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage() . "<br>";
     }
 }
 
-// Create directory and copy contents
-recursiveCopy($targetFolder, $linkFolder);
-
-echo "Storage files copied successfully! Your public storage is now accessible.";
+// Execute the function
+createStorageStructure();
 ?>
