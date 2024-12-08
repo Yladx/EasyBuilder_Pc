@@ -4,7 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        
+        <link rel="icon" type="image/svg+xml" href="{{ asset('logo.svg') }}">
+        <link rel="alternate icon" type="image/png" href="{{ asset('logo.png') }}">
+    
         <title>@yield('title', config('app.name', 'Easy builder'))</title>
         <script src="https://www.google.com/recaptcha/api.js"></script>
 

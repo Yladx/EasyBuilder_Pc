@@ -34,7 +34,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo.svg') }}">
+    <link rel="alternate icon" type="image/png" href="{{ asset('logo.png') }}">
 
 </head>
 <body>

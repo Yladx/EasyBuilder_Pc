@@ -13,7 +13,7 @@
         color: #6c757d;
         pointer-events: none;
         transition: all 0.3s ease-in-out;
-        background-color: #ffffff;
+        background-color: none;
         padding: 0 5px;
     }
 
@@ -21,16 +21,24 @@
     .floating-label.active {
         top: -10px; /* Move the label up */
         left: 10px; /* Adjust horizontal position */
-        font-size: 0.85rem; /* Make the label smaller */
-        color: #343a40; /* Change label color */
+       color: black;
         font-weight: bold; /* Make the label bold */
+        text-shadow: 
+            -1px -1px 0 white,
+            1px -1px 0 white,
+            -1px 1px 0 white,
+            1px 1px 0 rgb(12, 12, 12);
+        -webkit-text-stroke: 0.35px #ffffff;
+        letter-spacing: 0.7px;
+        padding: 0 5px;
+      
     }
 
     /* Input Field Styling */
     .animated-input {
         border-radius: 10px !important;
 
-        background-color: #f8f9fa;
+        background-color: none;
         border: 3px solid #000000;
 
         font-size: 1rem;

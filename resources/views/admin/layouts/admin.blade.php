@@ -6,6 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', config('app.name', 'Laravel'))</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo.svg') }}">
+    <link rel="alternate icon" type="image/png" href="{{ asset('logo.png') }}">
 
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
