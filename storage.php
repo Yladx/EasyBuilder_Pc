@@ -3,10 +3,21 @@
 $targetFolder = __DIR__.'/storage/app/public';
 $linkFolder = __DIR__.'/public/storage';
 
+// Remove existing symlink if it exists
 if (file_exists($linkFolder)) {
-    unlink($linkFolder);
+    if (is_dir($linkFolder)) {
+        rmdir($linkFolder);
+    } else {
+        unlink($linkFolder);
+    }
 }
 
-symlink($targetFolder, $linkFolder);
-echo "Symbolic link created successfully!";
+// Create directory junction (Windows equivalent of symlink)
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    exec('mklink /J "' . str_replace('/', '\\', $linkFolder) . '" "' . str_replace('/', '\\', $targetFolder) . '"');
+} else {
+    symlink($targetFolder, $linkFolder);
+}
+
+echo "Storage link created successfully!";
 ?>
