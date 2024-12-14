@@ -41,7 +41,7 @@ function fetchCompatibleRAMs(motherboardId, ramSlots) {
                 ramSelect.innerHTML = `<option value="" selected disabled>Select RAM for Slot ${i}</option>`;
 
                 data.forEach(ram => {
-                    ramSelect.innerHTML += `<option value="${ram.id}" data-tdp="${ram.tdp}">${ram.name} (TDP: ${ram.tdp}W)</option>`;
+                    ramSelect.innerHTML += `<option value="${ram.id}" data-tdp="${ram.tdp}">${ram.name} (TDP: ${ram.speed_mhz}MHz)</option>`;
                 });
 
                 ramSelect.addEventListener('change', function () {
