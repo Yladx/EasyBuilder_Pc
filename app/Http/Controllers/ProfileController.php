@@ -90,6 +90,10 @@ class ProfileController extends Controller
                           ->whereColumn('rate.build_id', 'builds.id');
                 })
                 ->delete();
+            
+            // Set user_id to 'deleted' for remaining builds
+            Build::where('user_id', $user->id)
+                ->update(['user_id' => 'deleted']);
 
             Auth::logout();
             $user->delete();
