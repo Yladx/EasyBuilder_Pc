@@ -92,16 +92,7 @@ class RecommendedBuildForm extends Controller
             //     ]
             // ]);
 
-
-
-
-
-
-
-
-
-
-
+ // Log the activity if the user is authenticated and not an admin
 
 
             // Fetch the selected case to get its image
@@ -125,6 +116,21 @@ class RecommendedBuildForm extends Controller
                 'image' => $case->image,
                 'ram_id' => $validatedData['ram_id']
             ]));
+
+            // Log activity for authenticated users
+            if (Auth::check()) {
+                DB::table('activity_logs')->insert([
+                    'user_id' => Auth::id(),
+                    'build_id' => $build->id,
+                    'activity_timestamp' => now(),
+                    'action' => 'create',
+                    'type' => 'build',
+                    'activity' => 'User created a build',
+                    'activity_details' => "User created the build '{$build->build_name}' [ {$build->id} ]",
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
 
             // Log successful build creation
             // Log::info('Recommended Build Created Successfully', [

@@ -94,7 +94,7 @@ class ProfileController extends Controller
                           });
                 })
                 ->update([
-                    'user_id' => 'deleted',
+                    'user_id' => null,
                     'published' => false
                 ]);
 
@@ -103,7 +103,7 @@ class ProfileController extends Controller
             // \Illuminate\Support\Facades\Log::warning('User Account Deleted', [
             //     'user_id' => $user->id,
             //     'email' => $user->email,
-            //     'builds_affected' => \DB::table('builds')->where('user_id', 'deleted')->count()
+            //     'builds_affected' => \DB::table('builds')->where('user_id', null)->count()
             // ]);
 
             Auth::logout();

@@ -91,7 +91,7 @@
                 <img src="{{ asset('logo.svg') }}" class="d-block w-100 h-100" style="object-fit: contain; opacity: 0.7;" alt="PC Build 1">
                 <div class="carousel-caption d-flex flex-column justify-content-start align-items-start text-start ps-5" style="bottom: 70px; top: auto;">
                     <h5 class="text-white" style="font-size: 2rem; font-weight: bold;">Build Your PC Now</h5>
-                    <span class="mt-3 text-white">
+                    <span class="mt-3 text-white" style="font-size: 1.2rem;">
                         Explore our features to build the perfect PC for your needs.
                     </span>
                     <a class="btn btn-light mt-3" style="font-size: 1rem; font-weight: bold;" href="{{ route('build.build-pc') }}">
@@ -117,7 +117,7 @@
                     <!-- Caption -->
                     <div class="carousel-caption d-flex flex-column justify-content-start align-items-start text-start ps-5" style="bottom: 70px; top: auto; pointer-events: none;">
                         <h5 class="text-white">{{ $ad->label }}</h5>
-                        <p class="text-white" style="{{ !$ad->access_link ? 'font-size: 1rem;' : 'font-size: 0.8rem;' }}">
+                        <p class="text-white" style="{{ !$ad->access_link ? 'font-size: 1rem;' : 'font-size: 1.2rem;' }}">
                             {{ $ad->caption }}
                         </p>
                     </div>

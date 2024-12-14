@@ -292,7 +292,7 @@ class BuildCompatibility {
     
                     li.innerHTML = `
                         <div class="d-flex align-items-center">
-                            <img src="${imagePath}" alt="${ram.name}" class="me-2" style="width: 50px; height: 50px; object-fit: contain;">
+                            <img src="${imagePath}" alt="${ram.name}" class="me-2" style="width: 50px; height: 50px; object-fit: contain; " loading="lazy">
                             <span>${type.toUpperCase()} Slot ${index + 1}: ${ram.name}</span>
                         </div>
                     `;
@@ -309,7 +309,7 @@ class BuildCompatibility {
     
                 li.innerHTML = `
                     <div class="d-flex align-items-center">
-                        <img src="${imagePath}" alt="${component.name}" class="me-2" style="width: 50px; height: 50px; object-fit: contain;">
+                        <img src="${imagePath}" alt="${component.name}" class="me-2" style="width: 50px; height: 50px; object-fit: contain; " loading="lazy">
                         <span>${type.toUpperCase()}: ${component.name}</span>
                     </div>
                 `;
@@ -573,7 +573,7 @@ class BuildCompatibility {
             <div class="component-item flex-shrink-0 mb-3" data-tdp="${cpu.tdp || 0}">
                 <img src="${cpu.image ? '/storage/' + cpu.image : 'https://via.placeholder.com/80'}" 
                      alt="${cpu.name}"
-                     width="80">
+                     width="80" loading="lazy">
                 <div>
                     <span class="d-block fw-bold">${cpu.name}</span>
                     <button class="btn btn-link text-dark p-0" data-tooltip-content="
@@ -606,7 +606,7 @@ class BuildCompatibility {
             <div class="component-item flex-shrink-0 mb-3" data-tdp="${gpu.tdp || 0}">
                 <img src="${gpu.image ? '/storage/' + gpu.image : 'https://via.placeholder.com/80'}" 
                      alt="${gpu.name}"
-                     width="80">
+                     width="80" loading="lazy">
                 <div>
                     <span class="d-block fw-bold">${gpu.name}</span>
                     <button class="btn btn-link text-dark p-0" data-tooltip-content="
@@ -639,7 +639,7 @@ class BuildCompatibility {
             <div class="component-item flex-shrink-0 mb-3" data-tdp="${ram.tdp || 0}">
                 <img src="${ram.image ? '/storage/' + ram.image : 'https://via.placeholder.com/80'}" 
                      alt="${ram.name}"
-                     width="80">
+                     width="80" loading="lazy">
                 <div>
                     <span class="d-block fw-bold">${ram.name}</span>
                     <button class="btn btn-link text-dark p-0" data-tooltip-content="
@@ -672,7 +672,7 @@ class BuildCompatibility {
             <div class="component-item flex-shrink-0 mb-3" data-tdp="${storage.tdp || 0}">
                 <img src="${storage.image ? '/storage/' + storage.image : 'https://via.placeholder.com/80'}" 
                      alt="${storage.name}"
-                     width="80">
+                     width="80" loading="lazy">
                 <div>
                     <span class="d-block fw-bold">${storage.name}</span>
                     <button class="btn btn-link text-dark p-0" data-tooltip-content="
@@ -705,7 +705,7 @@ class BuildCompatibility {
             <div class="component-item flex-shrink-0 mb-3">
                 <img src="${psu.image ? '/storage/' + psu.image : 'https://via.placeholder.com/80'}" 
                      alt="${psu.name}"
-                     width="80">
+                     width="80" loading="lazy">
                 <div>
                     <span class="d-block fw-bold">${psu.name}</span>
                     <button class="btn btn-link text-dark p-0" data-tooltip-content="
@@ -738,7 +738,7 @@ class BuildCompatibility {
             <div class="component-item flex-shrink-0 mb-3">
                 <img src="${pcCase.image ? '/storage/' + pcCase.image : 'https://via.placeholder.com/80'}" 
                      alt="${pcCase.name}"
-                     width="80">
+                     width="80" loading="lazy">
                 <div>
                     <span class="d-block fw-bold">${pcCase.name}</span>
                     <button class="btn btn-link text-dark p-0" data-tooltip-content="
@@ -838,7 +838,7 @@ class BuildCompatibility {
                 <div class="component-item flex-shrink-0 mb-3" data-tdp="${psu.max_tdp}">
                     <img src="${psu.image ? '/storage/' + psu.image : 'https://via.placeholder.com/80'}" 
                          alt="${psu.name}"
-                         width="80">
+                         width="80" loading="lazy">
                     <div>
                         <span class="d-block fw-bold">${psu.name}</span>
                         <span class="d-block text-muted">${psu.description || ''}</span>

@@ -339,7 +339,7 @@
                         <div class="component-item flex-shrink-0 mb-3"
                             data-tdp="{{ $motherboard->tdp ?? 0 }}"
                             data-ram-slots="{{ $motherboard->ram_slots ?? 4 }}">
-                            <img src="{{ asset('storage/' . ($motherboard->image ?? 'placeholder.png')) }}" alt="{{ $motherboard->name }}">
+                            <img src="{{ asset('storage/' . ($motherboard->image ?? 'placeholder.png')) }}" alt="{{ $motherboard->name }}" loading="lazy">
                             <div>
                                 <span class="d-block fw-bold">{{ $motherboard->name }}</span>
                                  <span class="d-block text-muted ">RAM Slots: {{ $motherboard->ram_slots ?? 0 }} Socket: {{ $motherboard->socket ?? N/A }} Socket: {{ $motherboard->socket ?? N/A }}</span>

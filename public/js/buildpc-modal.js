@@ -100,10 +100,11 @@ class PublishManager {
     }
 
     async saveBuild() {
-        const buildName = document.getElementById('build_name').value;
-        const accessories = document.getElementById('accessories').value;
-        const buildNote = document.getElementById('build_note').value;
-        
+        const buildName = document.getElementById('build_name')?.value || '';
+        const accessories = document.getElementById('accessories')?.value || '';
+        const buildNote = document.getElementById('build_note')?.value || '';
+        const isPublish = document.getElementById('is_publish')?.checked || false;
+
         if (!buildName) {
             Swal.fire({
                 title: 'Error!',
@@ -128,10 +129,18 @@ class PublishManager {
             return;
         }
 
+        // Validate tag selection
+        if (this.selectedTags.length === 0) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please select at least one tag for your build',
+                icon: 'error'
+            });
+            return;
+        }
+
         // Format RAM IDs into an array of [id, id, ...]
         const ramIds = this.componentManager.selectedComponents.ram.map(ram => ram.id);
-
-        const isPublish = document.getElementById('is_publish').checked;
 
         const buildData = {
             build_name: buildName,
@@ -165,7 +174,7 @@ class PublishManager {
                 throw new Error(errorData.message || 'Failed to save build');
             }
 
-            const result = await response.json();
+            const buildInfo = await response.json();
             
             Swal.fire({
                 title: 'Success!',

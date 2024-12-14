@@ -15,7 +15,7 @@
                              data-name="{{ strtolower($build->build_name) }}"
                              onclick="viewBuildDetails({{ $build->id }})">
                             <div class="card">
-                            <img src="{{ asset('storage/' . $build->image) }}" class="card-img-top" alt="{{ $build->build_name }}">
+                            <img src="{{ asset('storage/' . $build->image) }}" class="card-img-top" alt="{{ $build->build_name }}" loading="lazy">
                             <div class="card-body">
                                     <h5 class="card-title">{{ $build->build_name }}</h5>
 
@@ -117,7 +117,7 @@
                     @foreach($builds as $build)
                         <div class="col-lg-4 col-md-6 col-xs-6 mb-4 build-item" data-name="{{ strtolower($build->build_name) }}" onclick="viewBuildDetails({{ $build->id }})">
                             <div class="card">
-                            <img src="{{ asset('storage/' . $build->image) }}" class="card-img-top" alt="{{ $build->build_name }}">
+                            <img src="{{ asset('storage/' . $build->image) }}" class="card-img-top" alt="{{ $build->build_name }}" loading="lazy">
                             <div class="card-body">
                                     <h5 class="card-title">{{ $build->build_name }}</h5>
 

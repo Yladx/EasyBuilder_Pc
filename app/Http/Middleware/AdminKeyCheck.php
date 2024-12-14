@@ -59,31 +59,81 @@ class AdminKeyCheck
         // Add our SweetAlert script just before the closing body tag
         $script = <<<HTML
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <style>
+            .otp-input-container {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+            .otp-input {
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                font-size: 24px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                -webkit-text-security: disc;
+                text-security: disc;
+            }
+            .otp-input:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 5px rgba(0,123,255,0.5);
+            }
+        </style>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     title: "Admin Access Required",
-                    text: "Please enter the admin key (6 digits) to proceed",
-                    input: "password",
-                    inputPlaceholder: "Enter 6-digit admin key",
-                    inputAttributes: {
-                        autocapitalize: "off",
-                        autocorrect: "off",
-                        maxlength: "6",
-                        minlength: "6",
-                        pattern: "[0-9]*"
-                    },
+                    html: `
+                        <div class="otp-input-container">
+                            <input type="password" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="password" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="password" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="password" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="password" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="password" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        </div>
+                    `,
                     showCancelButton: false,
                     confirmButtonText: "Submit",
                     allowOutsideClick: false,
                     allowEscapeKey: false,
-                    allowEnterKey: true,
-                    backdrop: `rgba(0,0,0,0.7)`,
-                    preConfirm: (key) => {
+                    didRender: () => {
+                        const inputs = document.querySelectorAll('.otp-input');
+                        
+                        inputs.forEach((input, index) => {
+                            input.addEventListener('input', function() {
+                                // Only allow numeric input
+                                this.value = this.value.replace(/[^0-9]/g, '');
+                                
+                                // Auto move to next input if filled
+                                if (this.value.length === 1 && index < inputs.length - 1) {
+                                    inputs[index + 1].focus();
+                                }
+                            });
+
+                            input.addEventListener('keydown', function(e) {
+                                // Allow backspace to move back
+                                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                                    inputs[index - 1].focus();
+                                }
+                            });
+                        });
+
+                        // Focus on first input
+                        inputs[0].focus();
+                    },
+                    preConfirm: () => {
+                        const inputs = document.querySelectorAll('.otp-input');
+                        const key = Array.from(inputs).map(input => input.value).join('');
+                        
+                        // Validate 6-digit input
                         if (!/^\d{6}$/.test(key)) {
                             Swal.showValidationMessage('Please enter a 6-digit number');
                             return false;
                         }
+
                         return fetch("/admin/verify-admin-key", {
                             method: "POST",
                             headers: {

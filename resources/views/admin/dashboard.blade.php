@@ -8,7 +8,7 @@
 </div>
     <div class="row">
         
-        <div class="col-md-9 col-xs-12"> 
+        <div class="col-md-8 col-xs-12"> 
            <!-- 6x6 Grid for Session Counts -->
            <div class="row mt-4">
             <!-- Guest Sessions -->
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-        <div class="col-md-3 col-xs-12 mt-1">
+        <div class="col-md-4 col-xs-12 mt-1">
             @include('admin.content.partials.recentactivity')
         </div>
 

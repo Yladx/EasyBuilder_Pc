@@ -65,10 +65,8 @@ class VerifyEmailController extends Controller
                         'action' => 'verify',
                         'type' => 'user',
                         'activity' => 'Email verified',
-                        'activity_details' => json_encode([
-                            'ip_address' => $request->ip(),
-                            'user_agent' => $request->userAgent()
-                        ]),
+                        'activity_details' => 
+                      'Email verified successfully',
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
