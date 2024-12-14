@@ -37,6 +37,8 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('logo.svg') }}">
     <link rel="alternate icon" type="image/png" href="{{ asset('logo.png') }}">
 
+
+   
 </head>
 <body>
 

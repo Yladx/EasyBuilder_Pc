@@ -2,6 +2,7 @@
 @import url('manageads.css');
 @import url('card.css');
 @import url('datatable.css');
+@import url('managecomponents.css');
 @import url('managemodules.css');
 @import url('../build/build.css'); /* Using a url */
 @import url('../component/modalstickyfooter.css');

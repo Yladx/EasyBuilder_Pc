@@ -1,3 +1,7 @@
+
+@import url("introduction.css"); /* Using a url */
+
+
 /* Sidebar container */
 .learningmodules-sidebar {
     width: 300px; /* Adjusted width */
@@ -211,4 +215,48 @@ body.sidebar-collapsed #toggleSidebar {
 
 .dropdown-toggle.active::after {
     transform: rotate(180deg);
+}
+/* Description Section Styles */
+.description {
+    background: linear-gradient(135deg, #a8acb3, #9b9ea2);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #ccd6dd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.description:before {
+    content: "Description";
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: #686c70;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.description p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+
+.video {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.video video {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Makes the video responsive to container width */
+    max-width: 720px; /* Sets the maximum width for the video */
+    height: auto; /* Maintains the aspect ratio */
 }

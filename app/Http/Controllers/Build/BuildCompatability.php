@@ -53,6 +53,7 @@ class BuildCompatability extends Controller
         }
 
         $rams = DB::table('rams')
+            ->select('rams.*', 'speed_mhz as speed_mhz')  // Explicitly select speed_mhz
             ->where('ram_generation', $motherboard->ram_generation)
             ->where('speed_ddr_version', '<=', $motherboard->max_memory)
             ->get();
@@ -133,3 +134,6 @@ class BuildCompatability extends Controller
 
 
 }
+
+
+

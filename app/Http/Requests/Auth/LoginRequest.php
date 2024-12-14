@@ -107,6 +107,7 @@ class LoginRequest extends FormRequest
 
    public function authenticate()
    {
+    
        // Find the user by email
        $user = \App\Models\User::where('email', $this->input('email'))->first();
        
@@ -177,11 +178,6 @@ class LoginRequest extends FormRequest
            ]);
        }
        
-     
-       
-       // Set user session role to 'user'
-  
-    
        return $user;
    }
 }

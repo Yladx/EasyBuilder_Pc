@@ -7,7 +7,7 @@
 @import url("learningmodules/learnmore.css"); /* Using a url */
 @import url("component/modalstickyfooter.css"); /* Using a url */
 @import url("component/header.css"); /* Using a url */
-@import url("home/carousel.css"); /* Using a url */
+@import url("home/home.css"); /* Using a url */
 
 .dropdown-toggle::after {
     display: none; /* Hides the dropdown arrow */

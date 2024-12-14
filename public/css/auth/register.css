@@ -1,0 +1,101 @@
+
+
+
+/* SweetAlert custom styling */
+ .terms-popup {
+    font-family: Arial, sans-serif;
+}
+
+.terms-title {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+}
+
+.terms-html-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.terms-content-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.terms-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+    border: 1px solid #e0e0e0;
+}
+
+.terms-footer {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 10px;
+    z-index: 10;
+    width: 100%;
+    left: 0;
+    right: 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.terms-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.terms-agreement-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.terms-footer-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.terms-agreement-label {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #333;
+    user-select: none;
+}
+
+.swal2-checkbox {
+    margin-right: 10px;
+}
+
+.swal2-styled {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.swal2-cancel {
+    background-color: #f0f0f0 !important;
+    color: #333 !important;
+}
+
+.swal2-confirm {
+    background-color: #3085d6 !important;
+    color: white !important;
+}
+
+.swal2-confirm:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

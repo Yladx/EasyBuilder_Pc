@@ -33,7 +33,7 @@
     </style>
 
     <div class="mb-3">
-        <label for="tagInput" class="form-label">Tag</label>
+        <label for="tagInput" class="form-label fw-bold text-uppercase">Tag</label>
         <div class="combined-input">
             <!-- Textbox for adding or displaying selected tag -->
             <input
@@ -57,22 +57,22 @@
     </div>
 
     <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+        <label for="title" class="form-label fw-bold text-uppercase">Title</label>
         <input type="text" name="title" id="title" class="form-control" value="{{ $module->title }}" required>
     </div>
     <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+        <label for="description" class="form-label fw-bold text-uppercase">Description</label>
         <textarea name="description" id="description" class="form-control" rows="3" required>{{ $module->description }}</textarea>
     </div>
     <div class="mb-3">
-        <label for="video_src" class="form-label">Upload Video</label>
+        <label for="video_src" class="form-label fw-bold text-uppercase">Upload Video</label>
         <input type="file" name="video_src" id="video_src" class="form-control" accept="video/*">
         @if($module->video_src)
             <small class="form-text text-muted">Current Video: <a href="{{ asset('storage/' . $module->video_src) }}" target="_blank">View</a></small>
         @endif
     </div>
     <div class="mb-3">
-        <label for="information" class="form-label">Information</label>
+        <label for="information" class="form-label fw-bold text-uppercase ">Information</label>
         <textarea name="information" id="information" class="form-control">{{ $module->Information }}</textarea>
     </div>
 

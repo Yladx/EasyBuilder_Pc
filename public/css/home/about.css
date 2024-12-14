@@ -1,0 +1,37 @@
+
+/* Remove card background */
+.team-member {
+    background: none;
+    border: none;
+    box-shadow: none;
+    transition: transform 0.3s ease;
+}
+
+/* Add hover effect */
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+/* Uniform image styling */
+.member-image img {
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #414141;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    max-width: 100%;
+  
+}
+
+/* Social icons styling */
+.team-member .social-links a {
+    color: #000;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.team-member .social-links a:hover {
+    color: #000000;
+}

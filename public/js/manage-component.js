@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     // Function to refresh component counts
     function refreshCounts() {
-        fetch("/component/count")
+        fetch("//admin/components/count")
             .then((response) => response.json())
             .then((data) => {
                 // Update component counts in the UI
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     // Fetch component data for the selected type
     function fetchComponentData(type) {
-        $.post(`/get-component-data/${type}`)
+        $.post(`/admin/components/get-data/${type}`)
             .done((response) => {
                 if (response.columns && response.data) {
                     columns = response.columns;
@@ -235,7 +235,7 @@ $(document).ready(function () {
 
     // Fetch component columns and data for editing
     function openEditModal(id) {
-        $.get(`/component/${componentType}/${id}`)
+        $.get(`/admin/components/${componentType}/${id}`)
             .done((response) => {
                 if (response.data) {
                     fetchComponentColumns(componentType, 'Edit Component', response.data);
@@ -248,7 +248,7 @@ $(document).ready(function () {
 
     // Fetch component columns and show modal
     function fetchComponentColumns(type, modalTitle, data = {}) {
-        $.post(`/get-component-data/${type}`)
+        $.post(`/admin/components/get-data/${type}`)
             .done((response) => {
                 if (response.columns) {
                     showAdminModal(modalTitle, response.columns, data, response.comments);
@@ -322,8 +322,8 @@ $(document).ready(function () {
     function saveComponentData() {
         const formData = new FormData($('#componentForm')[0]);
         const url = currentComponentId
-            ? `/component/${componentType}/${currentComponentId}/update`
-            : `/component/${componentType}/add`;
+            ? `/admin/components/${componentType}/${currentComponentId}/update`
+            : `/admin/components/${componentType}/add`;
 
         if (currentComponentId) {
             formData.append('_method', 'PUT');
@@ -376,7 +376,7 @@ $(document).ready(function () {
 
     function deleteComponent(id) {
         $.ajax({
-            url: `/component/${componentType}/${id}/delete`,
+            url: `/admin/components/${componentType}/${id}/delete`,
             type: 'DELETE',
             success: (response) => {
                 if (response.success) {

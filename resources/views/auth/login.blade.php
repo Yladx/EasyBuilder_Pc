@@ -89,13 +89,15 @@
                     </div>
                 </div>
  <!-- reCAPTCHA -->
- <div class="d-flex justify-content-center mb-3">
-     {!! htmlFormSnippet() !!}
-     {!! htmlScriptTagJsApi() !!}
- </div>
- @error('g-recaptcha-response')
-     <div class="text-danger mb-3 text-center" style="font-size: 10px">{{ $message }}</div>
- @enderror
+                    <div class="d-flex justify-content-center mb-3">
+                        {!! htmlFormSnippet() !!}
+                        {!! htmlScriptTagJsApi() !!}
+                    </div>
+
+
+    @error('g-recaptcha-response')
+        <div class="text-danger mb-3 text-center" style="font-size: 10px">{{ $message }}</div>
+    @enderror
                 <div class="d-grid gap-2">
                     <button type="submit" id="loginButton" class="btn btn-dark bg-black">
                         Sign in

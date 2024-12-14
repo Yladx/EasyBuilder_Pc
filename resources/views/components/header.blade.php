@@ -1,5 +1,3 @@
-
-
 @auth
 <!-- Header for Logged-In Users -->
 <header>
@@ -53,9 +51,12 @@
     </nav>
 
     <!-- Offcanvas Navbar -->
-    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="z-index: 9999;">
+        <div class="offcanvas-header border-bottom">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-user-circle fs-4 me-2"></i>
+                <h5 class="offcanvas-title text-white mb-0">{{ auth()->user()->name }}</h5>
+            </div>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -159,3 +160,25 @@
         });
     }
 </script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+.offcanvas {
+    z-index: 9999 !important;
+}
+.offcanvas-header {
+    padding: 1rem;
+}
+.offcanvas-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.nav-link {
+    padding: 0.8rem 1rem;
+    transition: background-color 0.2s;
+}
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+</style>

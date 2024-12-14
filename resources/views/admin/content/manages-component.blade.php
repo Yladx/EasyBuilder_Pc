@@ -2,42 +2,7 @@
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
         <div class="text text-white">Manage Components</div>
 
-        <style>
-            .stat-card {
-                width: 14.28%;
-                min-width: 100px;
-                padding: 8px 5px;
-                color: white;
-                transition: all 0.3s ease;
-                margin: 0;
-                border-right: 1px solid rgba(255, 255, 255, 0.1);
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            .stat-card:first-child {
-                border-left: 1px solid rgba(255, 255, 255, 0.1);
-                border-top-left-radius: 4px;
-                border-bottom-left-radius: 4px;
-            }
-            .stat-card:last-child {
-                border-right: 1px solid rgba(255, 255, 255, 0.1);
-                border-top-right-radius: 4px;
-                border-bottom-right-radius: 4px;
-            }
-            .stat-card:hover {
-                transform: translateY(-2px);
-            }
-            .stat-value {
-                font-size: 1rem;
-                font-weight: bold;
-                margin-top: 3px;
-            }
-            .stats-container {
-                background:none;
-                padding: 1px;
-                border-radius: 4px;
-            }
-        </style>
+        
 
         <div class="row mb-3">
             <div class="d-flex flex-wrap stats-container">

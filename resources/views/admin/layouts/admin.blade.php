@@ -9,6 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('logo.svg') }}">
     <link rel="alternate icon" type="image/png" href="{{ asset('logo.png') }}">
 
+    @yield('head')
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
      <link rel="stylesheet" href="{{asset('css/admin/admin.css')}}">
@@ -73,8 +74,7 @@
         @include('admin.components.modal')
 
         <script src="{{ asset('js/form.js') }}"></script>
-        <script src="{{ asset('js/admin/dashboard.js') }}"></script>
-        <script src="{{ asset('js/admin/sidebar.js') }}"></script>
+         <script src="{{ asset('js/admin/sidebar.js') }}"></script>
 
 
 

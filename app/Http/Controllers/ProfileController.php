@@ -81,30 +81,15 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        // Update builds with ratings or published status
         \DB::transaction(function() use ($user) {
-            \DB::table('builds')
-                ->where('user_id', $user->id)
-                ->where(function($query) {
-                    $query->where('published', true)
-                          ->orWhereExists(function($q) {
-                              $q->select(\DB::raw(1))
-                                ->from('rate')
-                                ->whereColumn('rate.build_id', 'builds.id');
-                          });
+            // Delete builds with no ratings
+            Build::where('user_id', $user->id)
+                ->whereNotExists(function($query) {
+                    $query->select(\DB::raw(1))
+                          ->from('rate')
+                          ->whereColumn('rate.build_id', 'builds.id');
                 })
-                ->update([
-                    'user_id' => null,
-                    'published' => false
-                ]);
-
-            // Commented out Laravel logging for account deletion
-            // Uncomment if detailed logging is required
-            // \Illuminate\Support\Facades\Log::warning('User Account Deleted', [
-            //     'user_id' => $user->id,
-            //     'email' => $user->email,
-            //     'builds_affected' => \DB::table('builds')->where('user_id', null)->count()
-            // ]);
+                ->delete();
 
             Auth::logout();
             $user->delete();

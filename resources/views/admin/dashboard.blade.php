@@ -159,9 +159,7 @@
                 chart.resize();
             });
         });
-    </script>
-
-    <script>
+   
         document.addEventListener('DOMContentLoaded', function() {
             function updateSessionCounts() {
                 fetch('/admin/dashboard/session-counts')

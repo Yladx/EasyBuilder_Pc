@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const toggleForms = document.querySelectorAll('.toggle-ad-form');
     const deleteForms = document.querySelectorAll('form.delete-ad-form');
@@ -179,29 +178,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle Admin Modal Content Loading
-    document.getElementById('addAdsButton').addEventListener('click', () => {
-        adminModalBody.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"></div><p class="mt-2">Loading...</p></div>';
-        adminModalLabel.innerText = 'Add Advertisement';
-
-        fetch('{{ route("admin.getAddAdsForm") }}')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to load the form.');
-                return response.text();
-            })
-            .then(html => {
-                // Fade in the new content
-                adminModalBody.style.opacity = '0';
-                adminModalBody.innerHTML = html;
-                setTimeout(() => {
-                    adminModalBody.style.transition = 'opacity 0.3s ease';
-                    adminModalBody.style.opacity = '1';
-                }, 50);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                adminModalBody.innerHTML = '<div class="alert alert-danger">Failed to load the form. Please try again later.</div>';
-            });
-    });
-       
 });

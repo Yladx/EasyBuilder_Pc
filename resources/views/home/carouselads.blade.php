@@ -1,5 +1,5 @@
 <section class="carousel">
-    <div id="carouselExample" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div id="carouselAds" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="3000">
         <style>
             .carousel-item {
                 transition: transform 0s ease, opacity 0s ease;
@@ -15,13 +15,13 @@
             }
 
             /* Responsive carousel heights */
-            #carouselExample {
+            #carouselAds {
                 height: 87vh;
             }
 
             /* For tablets and smaller laptops */
             @media (max-width: 1024px) {
-                #carouselExample {
+                #carouselAds {
                     height: 70vh;
                 }
                 .carousel-caption {
@@ -34,7 +34,7 @@
 
             /* For mobile devices */
             @media (max-width: 768px) {
-                #carouselExample {
+                #carouselAds {
                     height: 50vh;
                 }
                 .carousel-caption {
@@ -55,7 +55,7 @@
 
             /* For very small devices */
             @media (max-width: 480px) {
-                #carouselExample {
+                #carouselAds {
                     height: 40vh;
                 }
                 .carousel-caption {
@@ -75,10 +75,10 @@
       <!-- Carousel Indicators -->
       <div class="carousel-indicators">
           <!-- Static Slide Indicator -->
-          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Static Slide"></button>
+          <button type="button" data-bs-target="#carouselAds" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Static Slide"></button>
           
           @foreach ($advertisements as $key => $ad)
-              <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $key + 1 }}"
+              <button type="button" data-bs-target="#carouselAds" data-bs-slide-to="{{ $key + 1 }}"
                   aria-label="Slide {{ $key + 2 }}"></button>
           @endforeach
       </div>
@@ -107,9 +107,9 @@
                     <a href="{{ $ad->access_link }}" target="_blank" class="text-decoration-none d-block h-100">
                     @endif
                     @if ($ad->type === 'image' && $ad->src)
-                        <img src="{{ asset('storage/' . $ad->src) }}" class="d-block w-100 h-100" style="object-fit: cover;" alt="{{ $ad->label }}">
+                        <img src="{{ asset('storage/' . $ad->src) }}" class="d-block w-100 h-100" style="object-fit: cover;" alt="{{ $ad->label }}" data-duration="120000">
                     @elseif ($ad->type === 'video' && $ad->src)
-                        <video class="d-block w-100 h-100" autoplay muted loop playsinline style="object-fit: cover;">
+                        <video class="d-block w-100 h-100" autoplay muted playsinline style="object-fit: cover;" data-duration="{{ $ad->duration ? $ad->duration * 1000 : 30000 }}">
                             <source src="{{ asset('storage/' . $ad->src) }}" type="video/mp4">
                         </video>
                     @endif
@@ -129,20 +129,49 @@
         </div>
 
         <!-- Carousel Controls -->
-        <button class="carousel-control-prev no-padding-control d-none" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <button class="carousel-control-prev no-padding-control d-none" type="button" data-bs-target="#carouselAds" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next no-padding-control d-none" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <button class="carousel-control-next no-padding-control d-none" type="button" data-bs-target="#carouselAds" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
 </section>
 
+@push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('carouselExample');
+    const carousel = document.querySelector('#carouselAds');
+    const carouselItems = carousel.querySelectorAll('.carousel-item');
+
+    carouselItems.forEach(item => {
+        const media = item.querySelector('img, video');
+        
+        if (media) {
+            const duration = parseInt(media.getAttribute('data-duration') || '120000');
+            
+            if (media.tagName === 'VIDEO') {
+                media.addEventListener('ended', function() {
+                    // Move to next slide when video ends
+                    $(carousel).carousel('next');
+                });
+            } else if (media.tagName === 'IMG') {
+                // Set timeout for images
+                setTimeout(() => {
+                    $(carousel).carousel('next');
+                }, duration);
+            }
+        }
+    });
+});
+</script>
+@endpush
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('carouselAds');
     const carouselInstance = new bootstrap.Carousel(carousel);
     
     // Auto-next after 1 minute for the static slide

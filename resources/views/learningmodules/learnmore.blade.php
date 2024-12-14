@@ -63,40 +63,10 @@
            @endif
         </div>
 
+        <script src="{{ asset('js/learningmodules/togglesidebar.js') }}"></script>
         <!-- Scripts -->
         <script>
-            const toggleSidebar = document.getElementById('toggleSidebar');
-            const body = document.body;
-            const icon = toggleSidebar.querySelector('i');
-
-            // Sidebar toggle functionality
-            toggleSidebar.addEventListener('click', function () {
-                body.classList.toggle('sidebar-collapsed');
-                if (body.classList.contains('sidebar-collapsed')) {
-                    icon.classList.remove('fa-close');
-                    icon.classList.add('fa-bars');
-                } else {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-close');
-                }
-            });
-
-            // Click event on module titles
-            const moduleTitles = document.querySelectorAll('.module-title');
-            const mainContent = document.getElementById('mainContent');
-            const introductionLink = document.getElementById('introductionLink');
-            const introductionContent = document.querySelector('.learningmodules-content').innerHTML;
-
-            moduleTitles.forEach(function (title) {
-                title.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const moduleId = this.getAttribute('data-id');
-                    // Update URL without reloading the page
-                    window.history.pushState({}, '', `/learning-modules/${moduleId}`);
-                    loadModuleContent(moduleId);
-                });
-            });
-
+          
             // Function to load the module content dynamically
             function loadModuleContent(moduleId) {
                 fetch(`/learningmodules/fetch/${moduleId}`)
@@ -184,53 +154,3 @@
 
     </div>
 </x-app-layout>
-<style>
-       /* Description Section Styles */
-       .description {
-            background: linear-gradient(135deg, #a8acb3, #9b9ea2);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #ccd6dd;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .description:before {
-            content: "Description";
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background: #686c70;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .description p {
-            margin: 0;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #555;
-        }
-
-
-.video {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .video video {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Makes the video responsive to container width */
-            max-width: 720px; /* Sets the maximum width for the video */
-            height: auto; /* Maintains the aspect ratio */
-        }
-
-
-
-
-</style>
