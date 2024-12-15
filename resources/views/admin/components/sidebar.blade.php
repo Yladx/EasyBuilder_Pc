@@ -15,7 +15,7 @@
         </li>
       <li class="{{ request()->routeIs('builds.index') ? 'active' : '' }}">
         <a href="{{ route('builds.index') }}" id="manageBuildBtn">
-            <i class='bx bx-grid-alt'></i>
+            <i class='bx bx-grid-alt' ></i>
             <span class="links_name">Manage PC Build</span>
         </a>
         <span class="tooltip">Manage Build</span>
@@ -41,7 +41,7 @@
 
         <li class="{{ request()->routeIs('users.index') ? 'active' : '' }}">
         <a href="{{ route('users.index') }}" id="userBtn">
-            <i><box-icon type='solid' name='user-rectangle'></box-icon></i>
+            <i><box-icon type='solid'color='#fffefe' name='user-rectangle'></box-icon></i>
             <span class="links_name">Manage Users</span>
         </a>
         <span class="tooltip">Manage Users</span>

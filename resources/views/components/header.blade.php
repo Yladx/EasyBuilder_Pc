@@ -51,7 +51,7 @@
     </nav>
 
     <!-- Offcanvas Navbar -->
-    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="z-index: 9999;">
+    <div class="offcanvas offcanvas-start bg-dark text-white z-index-5" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
         <div class="offcanvas-header border-bottom">
             <div class="d-flex align-items-center">
                 <i class="fas fa-user-circle fs-4 me-2"></i>

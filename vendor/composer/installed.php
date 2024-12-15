@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'abebaf76221b8ff35a0b135b6d56a74a1da44e94',
+        'reference' => '38a949ec0c7d612036930a3759bc735419a2c726',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -415,7 +415,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'abebaf76221b8ff35a0b135b6d56a74a1da44e94',
+            'reference' => '38a949ec0c7d612036930a3759bc735419a2c726',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1087,6 +1087,15 @@
             'provided' => array(
                 0 => '2.0|3.0',
             ),
+        ),
+        'symfony/filesystem' => array(
+            'pretty_version' => 'v7.2.0',
+            'version' => '7.2.0.0',
+            'reference' => 'b8dce482de9d7c9fe2891155035a7248ab5c7fdb',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/filesystem',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/finder' => array(
             'pretty_version' => 'v7.2.0',

@@ -145,14 +145,14 @@
                 },
                 footer: `
                     <div class="terms-footer">
-                        <div class="terms-footer-content">
-                            <div class="terms-agreement-wrapper">
+                        <div class="terms-footer-content row">
+                            <div class="terms-agreement-wrapper col-md-6 col-12">
                                 <input type="checkbox" id="termsAgreementCheckbox" class="swal2-checkbox">
                                 <label for="termsAgreementCheckbox" class="terms-agreement-label">
                                     I have read and understand the Terms and Conditions
                                 </label>
                             </div>
-                            <div class="terms-footer-buttons">
+                            <div class="terms-footer-buttons col-md-6 col-12">
                                 <button type="button" class="swal2-cancel swal2-styled" id="termsModalCancel">Cancel</button>
                                 <button type="button" class="swal2-confirm swal2-styled" id="termsModalAccept" disabled>Accept</button>
                             </div>
@@ -217,7 +217,86 @@
     </script>
 
     <style>
-    /* SweetAlert custom styling */
+        /* SweetAlert custom styling */
+        .swal2-popup {
+            font-size: 1.2rem;
+            padding: 2em;
+            max-width: 95vw;
+            width: auto !important;
+            box-sizing: border-box;
+        }
+        
+        .swal2-title {
+            font-size: 1.8em;
+            margin-bottom: 0.8em;
+            word-wrap: break-word;
+        }
+        
+        .swal2-content {
+            font-size: 1.2em;
+            padding: 0 1em;
+            word-wrap: break-word;
+        }
+        
+        .swal2-confirm {
+            padding: 0.8em 2em;
+            font-size: 1.2em;
+            white-space: normal;
+            height: auto;
+            word-wrap: break-word;
+            max-width: 100%;
+        }
+
+        .swal2-checkbox {
+            margin: 1em;
+            transform: scale(1.2);
+        }
+        
+        @media screen and (max-width: 480px) {
+            .swal2-popup {
+                padding: 1.5em;
+                width: 95vw !important;
+                margin: 0.5em;
+            }
+            
+            .swal2-title {
+                font-size: 1.6em;
+                line-height: 1.3;
+            }
+            
+            .swal2-content {
+                font-size: 1.1em;
+                padding: 0 0.5em;
+            }
+            
+            .swal2-confirm {
+                padding: 0.7em 1.5em;
+                font-size: 1.1em;
+                margin: 0.5em auto;
+                max-width: 90%;
+            }
+
+            .swal2-checkbox {
+                margin: 0.8em;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Ensure content doesn't overflow */
+        .swal2-container {
+            padding: 10px;
+        }
+
+        /* Better touch targets for checkboxes */
+        .swal2-checkbox input[type='checkbox'] {
+            min-width: 20px;
+            min-height: 20px;
+            cursor: pointer;
+        }
+    </style>
+
+    <style>
+    /* Terms and Conditions styling */
     .terms-popup {
         font-family: Arial, sans-serif;
     }
