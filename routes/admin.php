@@ -124,7 +124,7 @@ Route::prefix('admin')->group(function () {
             
             Route::put('/{type}/{id}/update', [ManageComponentController::class, 'update']);  // For updating existing
             
-            Route::get('count', [ManageComponentController::class, 'fetchcomponentcounts'])->name('admin.components.count');
+            Route::get('/counts', [ManageComponentController::class, 'fetchcomponentcounts'])->name('admin.components.count');
             
             
         });

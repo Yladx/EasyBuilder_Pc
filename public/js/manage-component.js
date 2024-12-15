@@ -10,9 +10,9 @@ $(document).ready(function () {
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
     });
 
-    // Function to refresh component counts
+    // Function to refresh component counts w
     function refreshCounts() {
-        fetch("//admin/components/count")
+        fetch("/admin/components/counts")
             .then((response) => response.json())
             .then((data) => {
                 // Update component counts in the UI
