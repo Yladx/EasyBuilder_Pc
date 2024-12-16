@@ -76,8 +76,12 @@
          
 
             <div class="tab-content maintable">
-
+                <div class="d-flex justify-content-end mb-3">
+                    <button id="export_excel" class="btn btn-info btn-sm me-2">Export Excel</button>
+                    <button id="export_pdf" class="btn btn-success btn-sm">Export PDF</button>
+                </div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
+                    
                     <button class="btn gradient-btn px-4" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
                         <i class="fas fa-filter me-1"></i> Filter Options
                     </button>
@@ -87,6 +91,8 @@
                         </div>
                     </div>
                 </div>
+
+               
 
                 <div class="collapse mb-3" id="filterCollapse">
                     <div class="bg-transparent d-md-flex flex-wrap d-block align-items-center gap-2 p-3 rounded border border-secondary" id="filterSection">
@@ -146,45 +152,7 @@
 
     </div>
 
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    const checkboxes = document.querySelectorAll('.component-checkbox');
-    const selectAll = document.getElementById('selectAll');
 
-    // Toggle individual filter sections
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', function () {
-            const targetId = checkbox.dataset.target;
-            const target = document.getElementById(targetId);
-
-            if (checkbox.checked) {
-                target.classList.add('show');
-            } else {
-                target.classList.remove('show');
-            }
-        });
-    });
-
-    // Select all checkboxes
-    selectAll.addEventListener('change', function () {
-        const isChecked = selectAll.checked;
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = isChecked;
-
-            const targetId = checkbox.dataset.target;
-            const target = document.getElementById(targetId);
-
-            if (isChecked) {
-                target.classList.add('show');
-            } else {
-                target.classList.remove('show');
-            }
-        });
-    });
-});
-
-    </script>
    <!-- Include jQuery -->
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <!-- Link to the external JavaScript file -->
