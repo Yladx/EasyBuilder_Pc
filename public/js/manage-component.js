@@ -220,6 +220,111 @@ $(document).ready(function () {
         });
     }
 
+   
+    $('#export_excel').click(function () {
+        const rows = [];
+        const headers = dataTable.columns().header().toArray().map(header => $(header).text());
+        
+        // Create a mapping of filtered headers to the original indices
+        const filteredHeaders = [];
+        const headerMap = []; // Maps filtered index to original index
+        headers.forEach((header, index) => {
+            if (!header.toLowerCase().includes('action') && !header.toLowerCase().includes('image')) {
+                filteredHeaders.push(header);
+                headerMap.push(index);
+            }
+        });
+        rows.push(filteredHeaders);
+    
+        const data = dataTable.rows().data().toArray();
+        data.forEach((row) => {
+            const rowData = [];
+            headerMap.forEach(index => {
+                rowData.push(row[index]);
+            });
+            rows.push(rowData);
+        });
+    
+        // Get filter values if applied
+        const filterColumn = $('#filterColumn').val();
+        const filterValue = $('#filterValue').val();
+        let title = `${componentType} Components`;
+    
+        if (filterColumn && filterValue) {
+            const adjustedFilterColumn = filterColumn - 2; // Adjust for removed columns
+            const columnName = filteredHeaders[adjustedFilterColumn]; // Corrected filtered column index
+            title = `${componentType} ${columnName} - ${filterValue}`;
+        }
+    
+        const worksheet = XLSX.utils.aoa_to_sheet(rows);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Components");
+    
+        const fileName = `${title}.xlsx`;
+        XLSX.writeFile(workbook, fileName);
+    });
+      
+    $('#export_pdf').click(function () {
+        const { jsPDF } = window.jspdf; // Ensure jsPDF is correctly loaded
+        const doc = new jsPDF('l', 'mm', 'a4'); // Landscape, millimeters, A4 size
+    
+        const table = $('#componentTable').DataTable();
+        const headers = table.columns().header().toArray().map(header => $(header).text());
+    
+        // Filter headers to exclude 'Action' and 'Image'
+        const filteredHeaders = [];
+        const headerMap = []; // Maps filtered index to original index
+        headers.forEach((header, index) => {
+            if (!header.toLowerCase().includes('action') && !header.toLowerCase().includes('image')) {
+                filteredHeaders.push(header);
+                headerMap.push(index);
+            }
+        });
+    
+        // Extract filtered rows based on the header mapping
+        const data = table.rows().data().toArray();
+        const rows = data.map(row => {
+            return headerMap.map(index => row[index]);
+        });
+    
+        // Apply filters if specified
+        const filterColumn = $('#filterColumn').val();
+        const filterValue = $('#filterValue').val();
+        let title = `${componentType} Components`;
+    
+        if (filterColumn && filterValue) {
+            const adjustedFilterColumn = filterColumn - 2; // Adjust for removed columns
+            const columnName = filteredHeaders[adjustedFilterColumn];
+            title = `${componentType} ${columnName} - ${filterValue}`;
+        }
+    
+        // Add title to the PDF
+        doc.setFontSize(16);
+        doc.text(title, 14, 10);
+    
+        // Check if autoTable is available
+        if (doc.autoTable) {
+            doc.autoTable({
+                head: [filteredHeaders],
+                body: rows,
+                startY: 20,
+                theme: 'grid',
+            });
+    
+            // Save the PDF
+            doc.save(`${title}.pdf`);
+        } else {
+            console.error("autoTable plugin is not loaded. Please ensure you include the autoTable script.");
+        }
+    });
+    
+    
+    
+    
+
+
+
+
     // Add new component
     $('#addComponentButton').on('click', () => {
         currentComponentId = null; // Reset ID
