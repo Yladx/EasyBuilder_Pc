@@ -2,15 +2,7 @@
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
         
         <div class="text-white mb-3">
-            <div class="row">
-                <div class="col-12 col-sm-6"><h4>Manage PC Parts Components</h4></div>
-                <div class="col-12 col-sm-6 text-end">
-
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#componentreport">Generate Report</button>
-
-
-                    </div>
-                
+          <h4>Manage PC Parts Components</h4>
             </div>
 
         
@@ -151,7 +143,7 @@
         </div>
 
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     
