@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ComponentsExport;
+use App\Models\Component;
 
 class ManageComponentController extends Controller
 {
@@ -500,6 +503,27 @@ class ManageComponentController extends Controller
             // ]);
 
             return response()->json(['error' => 'Failed to delete component: ' . $e->getMessage()], 500);
+        }
+    }
+
+
+
+    public function getColumns($table)
+    {
+        try {
+            // Check if the table exists in the database
+            if (!Schema::hasTable($table)) {
+                return response()->json(['error' => 'Table not found'], 400);
+            }
+
+            // Fetch column names from the table
+            $columns = DB::getSchemaBuilder()->getColumnListing($table);
+
+            // Return column names as JSON
+            return response()->json(['columns' => $columns]);
+        } catch (\Exception $e) {
+            // Handle exceptions
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }

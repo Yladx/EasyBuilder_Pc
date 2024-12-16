@@ -1,10 +1,21 @@
 <x-admin-layout>
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
-        <div class="text text-white">Manage Components</div>
+        
+        <div class="text-white mb-3">
+            <div class="row">
+                <div class="col-12 col-sm-6"><h4>Manage PC Parts Components</h4></div>
+                <div class="col-12 col-sm-6 text-end">
+
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#componentreport">Generate Report</button>
+
+
+                    </div>
+                
+            </div>
 
         
 
-        <div class="row mb-3">
+        <div class="row mb-3 mt-4">
             <div class="d-flex flex-wrap stats-container">
                 <div class="stat-card" style="background: linear-gradient(225deg, rgba(13, 71, 161, 0.85), rgba(0, 0, 0, 0.95));">
                     <div class="text-center">
@@ -135,6 +146,45 @@
 
     </div>
 
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const checkboxes = document.querySelectorAll('.component-checkbox');
+    const selectAll = document.getElementById('selectAll');
+
+    // Toggle individual filter sections
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', function () {
+            const targetId = checkbox.dataset.target;
+            const target = document.getElementById(targetId);
+
+            if (checkbox.checked) {
+                target.classList.add('show');
+            } else {
+                target.classList.remove('show');
+            }
+        });
+    });
+
+    // Select all checkboxes
+    selectAll.addEventListener('change', function () {
+        const isChecked = selectAll.checked;
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = isChecked;
+
+            const targetId = checkbox.dataset.target;
+            const target = document.getElementById(targetId);
+
+            if (isChecked) {
+                target.classList.add('show');
+            } else {
+                target.classList.remove('show');
+            }
+        });
+    });
+});
+
+    </script>
    <!-- Include jQuery -->
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <!-- Link to the external JavaScript file -->

@@ -3,10 +3,10 @@
     <!-- Dashboard Content -->
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
 <!-- Green Card -->
-> <div class="text-center mb-4">
-    <h3 class="fw-bold text-white">Welcome to Admin Dashboard</h3>
+ <div class="text-center mb-3">
+    <h3 class="fw-bold text-white typing-animation" id="welcomeText"></h3>
 </div>
-    <div class="row">
+    <div class="row mt-4">
         
         <div class="col-md-8 col-xs-12"> 
            <!-- 6x6 Grid for Session Counts -->
@@ -202,6 +202,43 @@
                 height: 30vh !important;
             }
         }
+
+        @keyframes fade {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .animated-text {
+            animation: fade 3s infinite;
+        }
+
+        .typing-animation {
+            border-right: 2px solid;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: caret 0.75s step-end infinite;
+        }
+
+        @keyframes caret {
+            50% { border-color: transparent; }
+        }
     </style>
+
+    <script>
+        const text = 'Welcome to Admin Dashboard';
+        let index = 0;
+        const welcomeTextElement = document.getElementById('welcomeText');
+
+        function type() {
+            if (index < text.length) {
+                welcomeTextElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            }
+        }
+
+        type();
+    </script>
 
 </x-admin-layout>

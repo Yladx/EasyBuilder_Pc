@@ -2,10 +2,11 @@
 <x-admin-layout>
 
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
-        <div class="text text-white">Manage Users</div>
+        <div class="text-white mb-3">
+            <h4>Manage Users</h4>
+        </div>
 
-
-<div class="row">
+<div class="row mt-4">
    
             
                 <div class="container-fluid">

@@ -1,10 +1,12 @@
 <x-admin-layout>
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
 
-        <div class="text text-white">Manage Modules</div>
+     
+        <div class="text-white mb-3">
+            <h4>Manage Learning Modules</h4>
+        </div>
 
-
-<div class="card bg-secondary text-white text-center ">
+<div class="card bg-secondary text-white text-center mt-4">
 
     <p class="">Total Modules: {{ $statistics['totalModules'] }}</p>
 

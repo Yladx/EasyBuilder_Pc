@@ -1,8 +1,13 @@
 <x-admin-layout>
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
-        <div class="text text-white">Manage ADS</div>
 
-        <div class="row mb-4">
+
+       
+        <div class="text-white mb-3">
+            <h4>Manage Advertisements</h4>
+        </div>
+
+        <div class="row mb-4 mt-4">
             <!-- Total Advertisements -->
             <div class="col-md-4 col-sm-12">
                 <div class="custom-card bg-yellow">

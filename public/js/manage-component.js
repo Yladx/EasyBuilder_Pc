@@ -391,3 +391,103 @@ $(document).ready(function () {
         });
     }
 });
+ document.addEventListener('DOMContentLoaded', function () {
+    let columns = [];
+    let selectedTable = '';
+
+    // Elements
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const componentCheckboxes = document.querySelectorAll('.component-checkbox');
+    const generateReportButton = document.getElementById('generateReport');
+    const columnFilterDropdown = document.getElementById('columnFilter');
+    const valueFilterInput = document.getElementById('valueFilter');
+
+    // Event listener for "Select All" checkbox
+    selectAllCheckbox.addEventListener('change', function () {
+        const isChecked = this.checked;
+
+        componentCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+            const targetId = checkbox.dataset.target;
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.classList.toggle('show', isChecked);
+            }
+        });
+    });
+
+    // Event listener for individual component checkboxes
+    componentCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            const targetId = this.dataset.target;
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.classList.toggle('show', this.checked);
+            }
+
+            if (this.checked) {
+                selectedTable = this.value;
+                fetchColumnsForTable(selectedTable);
+            } else if (selectAllCheckbox.checked) {
+                selectAllCheckbox.checked = false; // Uncheck "Select All" if a checkbox is unchecked
+            }
+        });
+    });
+
+    // Function to fetch columns for a specific table
+    function fetchColumnsForTable(tableName) {
+        fetch(`/admin/components/get-columns/${tableName}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch columns');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (Array.isArray(data.columns)) {
+                    columns = data.columns;
+                    populateColumnDropdown(columns);
+                } else {
+                    console.error('Invalid columns data received:', data);
+                }
+            })
+            .catch(error => console.error('Error fetching columns:', error));
+    }
+
+    // Populate the column filter dropdown
+    function populateColumnDropdown(columns) {
+        columnFilterDropdown.innerHTML = '<option value="">Select Column</option>';
+        columns.forEach(column => {
+            const option = document.createElement('option');
+            option.value = column;
+            option.textContent = column;
+            columnFilterDropdown.appendChild(option);
+        });
+
+        columnFilterDropdown.disabled = columns.length === 0;
+        valueFilterInput.disabled = columns.length === 0;
+    }
+
+    // Event listener for "Generate Report" button
+    generateReportButton.addEventListener('click', function () {
+        const selectedComponents = Array.from(componentCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        if (selectedComponents.length === 0) {
+            alert('Please select at least one component type to generate a report.');
+            return;
+        }
+
+        const column = columnFilterDropdown.value;
+        const value = valueFilterInput.value.trim();
+
+        const filters = { column, value };
+
+        console.log('Generating report with the following details:');
+        console.log('Components:', selectedComponents);
+        console.log('Filters:', filters);
+
+        // You can now send these details to your backend or process them further
+    });
+});

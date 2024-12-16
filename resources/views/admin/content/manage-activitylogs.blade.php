@@ -1,11 +1,27 @@
 <x-admin-layout>
     <div class="container-fluid px-md-5 px-xs-2 py-md-3">
-        <div class="text text-white">Activity Logs</div>
-       
-        <section class="tab-content">  
-            <button id="toggle_filter" class="btn btn-dark mb-3">
-                <i class="fas fa-filter"></i> Toggle Filter
-            </button>
+        <div class="text-white mb-3">
+         
+               <h4>Manage Activity Logs</h4>
+             
+                
+            </div>
+     
+        <section class="tab-content mt-4"> 
+            <div class="row"> 
+                <div class="col-12 col-md-6">
+                    <button id="toggle_filter" class="btn btn-dark mb-3">
+                        <i class="fas fa-filter"></i> Toggle Filter
+                    </button>
+                </div>
+                <div class="col-12 col-md-6 export-buttons text-end">
+                    <button class="btn btn-success" id="export_pdf">Export PDF</button>
+    
+                    <button class="btn btn-info" id="export_excel">Export Excel</button> 
+                </div>
+            </div>
+
+        
             <div class="d mb-4 filter-section" style="display: none;">
               
                 <div class="card-body px-4">
@@ -54,7 +70,8 @@
                     </div>
                 </div>
             </div>
-
+            
+            
             <div class="mb-4">
                 <div class="card-body table-responsive">
                     <table id="activityLogsTable" class="table table-dark table-striped table-hover table-bordered table-striped text-center" style="width: 100%;">
@@ -76,15 +93,15 @@
                                     <td>{{ $log['activity_timestamp'] }}</td>
                                     <td>{{ $log['user'] }}</td>
                                   <td><span class="badge badge-{{  
-    $log['action'] == 'login' ? 'success' :  
-    ($log['action'] == 'logout' ? 'danger' :  
-    ($log['action'] == 'delete' ? 'danger' :  
-    ($log['action'] == 'view' ? 'primary' :  
-    ($log['action'] == 'request' ? 'violet' :  
-    ($log['action'] == 'create' ? 'warning' :  
-    ($log['action'] == 'rate' ? 'warning' :  
-    ($log['action'] == 'update' ? 'info' :  
-    ($log['action'] == 'verify' ? 'success' : 'primary')))))))) }}">{{ $log['action'] }}</span></td>
+                                        $log['action'] == 'login' ? 'success' :  
+                                        ($log['action'] == 'logout' ? 'danger' :  
+                                        ($log['action'] == 'delete' ? 'danger' :  
+                                        ($log['action'] == 'view' ? 'primary' :  
+                                        ($log['action'] == 'request' ? 'violet' :  
+                                        ($log['action'] == 'create' ? 'warning' :  
+                                        ($log['action'] == 'rate' ? 'warning' :  
+                                        ($log['action'] == 'update' ? 'info' :  
+                                        ($log['action'] == 'verify' ? 'success' : 'primary')))))))) }}">{{ $log['action'] }}</span></td>
                                     <td>{{ $log['type'] }}</td>
                                     <td>{{ $log['activity'] }}</td>
                                     <td>{{ $log['activity_details'] }}</td>

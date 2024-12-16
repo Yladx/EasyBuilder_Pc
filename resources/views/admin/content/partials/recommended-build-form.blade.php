@@ -21,7 +21,7 @@
   </style>
 
     <!-- Sticky and Absolute Total TDP -->
-    <div class="position-absolute sticky-top  " style="top: 0px; right: 0px; z-index: 1030; width: 80px;">
+    <div class="position-absolute sticky-top " style="top: 0px; right: 0px; z-index: 1030; width: 80px;">
         <label for="total_tdp" class="visually-hidden">Total TDP</label>
         <input
             type="text"
@@ -39,7 +39,7 @@
 
                       <div class="row">
 
-                      <div class="col-4">
+                      <div class="col-12 col-lg-4">
                       <!-- Build Name -->
                       <div class="mb-3">
                           <label for="build_name" class="form-label">Build Name</label>
@@ -84,7 +84,7 @@
 
                       </div>
 
-                      <div class="col-4">
+                      <div class="col-12 col-lg-4">
                  <!-- Motherboard Selection -->
         <div class="mb-3" id="motherboardDiv">
             <label for="motherboard_id" class="form-label">Motherboard</label>
@@ -123,7 +123,7 @@
                         <div id="ram-container"></div>
                     </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4">
                       <!-- Storage Selection -->
                       <div class="mb-3" id="storageDiv" style="display: none;">
                           <label for="storage_id" class="form-label">Storage</label>
