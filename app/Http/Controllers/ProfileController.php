@@ -84,37 +84,49 @@ class ProfileController extends Controller
         // Check if the user has builds with ratings
         $hasRatedBuilds = \DB::table('rate')->where('user_id', $user->id)->exists();
 
-        if ($hasRatedBuilds) {
-            // Set user_id to 'deleted' for builds with ratings
-            Build::where('user_id', $user->id)
-                ->whereExists(function ($query) {
-                    $query->select(\DB::raw(1))
-                          ->from('rate')
-                          ->whereColumn('rate.build_id', 'builds.id');
-                })
-                ->update(['user_id' => 'deleted']);
+        try {
+            \DB::beginTransaction();
             
-            // Delete builds without ratings
-            Build::where('user_id', $user->id)
-                ->whereNotExists(function ($query) {
-                    $query->select(\DB::raw(1))
-                          ->from('rate')
-                          ->whereColumn('rate.build_id', 'builds.id');
-                })
-                ->delete();
-        } else {
-            // Delete all builds if none have ratings
-            Build::where('user_id', $user->id)->delete();
+            if ($hasRatedBuilds) {
+                // Set user_id to 'deleted' for builds with ratings - using DB::raw for proper quoting
+                Build::where('user_id', $user->id)
+                    ->whereExists(function ($query) {
+                        $query->select(\DB::raw(1))
+                              ->from('rate')
+                              ->whereColumn('rate.build_id', 'builds.id');
+                    })
+                    ->update([
+                        'user_id' => DB::raw("'deleted'")
+                    ]);
+                
+                // Delete builds without ratings
+                Build::where('user_id', $user->id)
+                    ->whereNotExists(function ($query) {
+                        $query->select(\DB::raw(1))
+                              ->from('rate')
+                              ->whereColumn('rate.build_id', 'builds.id');
+                    })
+                    ->delete();
+            } else {
+                // Delete all builds if none have ratings
+                Build::where('user_id', $user->id)->delete();
+            }
+
+            // Delete the user's ratings
+            \DB::table('rate')->where('user_id', $user->id)->delete();
+            
+            Auth::logout();
+            $user->delete();
+
+            \DB::commit();
+            
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect('/')->with('success', 'Your account has been deleted successfully');
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to delete account. Please try again.');
         }
-
-        // Delete the user's ratings
-        \DB::table('rate')->where('user_id', $user->id)->delete();
-        
-        Auth::logout();
-        $user->delete();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/')->with('success', 'Your account has been deleted successfully');
     }
 }
