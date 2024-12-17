@@ -81,15 +81,6 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        \DB::transaction(function() use ($user) {
-            // Delete builds with no ratings
-            Build::where('user_id', $user->id)
-                ->whereNotExists(function($query) {
-                    $query->select(\DB::raw(1))
-                          ->from('rate')
-                          ->whereColumn('rate.build_id', 'builds.id');
-                })
-                ->delete();
             
             // Set user_id to 'deleted' for remaining builds
             Build::where('user_id', $user->id)
@@ -97,7 +88,7 @@ class ProfileController extends Controller
 
             Auth::logout();
             $user->delete();
-        });
+      
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
