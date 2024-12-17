@@ -90,7 +90,7 @@ class ProfileController extends Controller
         if ($hasRatedBuilds) {
             // Set 'user_id' to 'deleted' for builds with ratings
             Build::where('user_id', $user->id)
-                ->update(['user_id' => 'deleted']);
+                ->update(['user_id' => DB::raw("'deleted'")]);
         } else {
             // Delete builds with no ratings
             Build::where('user_id', $user->id)->delete();
@@ -106,5 +106,6 @@ class ProfileController extends Controller
         return redirect('/')
             ->with('success', 'Your account has been deleted successfully.');
     }
+    
     
 }
