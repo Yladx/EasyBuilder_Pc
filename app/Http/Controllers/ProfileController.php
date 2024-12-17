@@ -85,13 +85,31 @@ class ProfileController extends Controller
         $hasRatedBuilds = \DB::table('rate')->where('user_id', $user->id)->exists();
 
         if ($hasRatedBuilds) {
-            // Set user_id to 'deleted' for remaining builds
-            Build::where('user_id', $user->id)->update(['user_id' => 'deleted']);
+            // Set user_id to 'deleted' for builds with ratings
+            Build::where('user_id', $user->id)
+                ->whereExists(function ($query) {
+                    $query->select(\DB::raw(1))
+                          ->from('rate')
+                          ->whereColumn('rate.build_id', 'builds.id');
+                })
+                ->update(['user_id' => 'deleted']);
+            
+            // Delete builds without ratings
+            Build::where('user_id', $user->id)
+                ->whereNotExists(function ($query) {
+                    $query->select(\DB::raw(1))
+                          ->from('rate')
+                          ->whereColumn('rate.build_id', 'builds.id');
+                })
+                ->delete();
         } else {
-            // Delete builds with no ratings
+            // Delete all builds if none have ratings
             Build::where('user_id', $user->id)->delete();
         }
 
+        // Delete the user's ratings
+        \DB::table('rate')->where('user_id', $user->id)->delete();
+        
         Auth::logout();
         $user->delete();
         $request->session()->invalidate();
